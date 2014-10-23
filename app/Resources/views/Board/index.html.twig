@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+
+{% block body %}
+    <div class="page-header">
+        <div class="actions-menu pull-right">
+            {{ buttons.create(path('app_board_create'), 'Add Board') }}
+        </div>
+        <h1><i class="glyphicon glyphicon-cog"></i> {{ 'Boards' }}</h1>
+    </div>
+
+    {% for board in boards %}
+        <a class="board" href="#">
+            <h2 style="float: left;">{{ board.name }}</h2>
+            <div class="pull-right" style="margin-top: 15px; margin-right: 20px;">
+                {{ buttons.delete(path('app_board_delete', {'id': board.id})) }}
+            </div>
+        </a>
+    {% endfor %}
+{% endblock %}

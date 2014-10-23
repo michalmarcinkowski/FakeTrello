@@ -1,0 +1,7 @@
+sylius_resource:
+    resources:
+        app.board:
+            driver: doctrine/orm
+            templates: :Board
+            classes:
+                model: AppBundle\Entity\Board

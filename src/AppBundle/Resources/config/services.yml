@@ -1,0 +1,5 @@
+services:
+    app.form.type.board:
+        class: AppBundle\Form\Type\BoardType
+        tags:
+            - { name: form.type, alias: app_board }
