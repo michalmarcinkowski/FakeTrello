@@ -4,7 +4,7 @@ body {
     background-color: #f5f5f5;
 }
 
-.form-signin, .fos_user_registration_register{
+.form-signin, .fos_user_registration_register, div.container.confirmed{
     max-width: 300px;
     padding: 19px 29px 29px;
     margin: 0 auto 20px;
