@@ -1,0 +1,24 @@
+homepage:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: app.controller.board:indexAction
+
+app_board_create:
+    pattern: /boards/new
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.board:createAction
+        _sylius:
+            redirect: homepage
+
+app_board_delete:
+    pattern: /boards/{id}
+    methods: [DELETE]
+    defaults:
+        _controller: app.controller.board:deleteAction
+        _sylius:
+            redirect: homepage
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
