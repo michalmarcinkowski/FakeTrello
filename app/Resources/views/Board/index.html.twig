@@ -20,26 +20,25 @@
     </div>
 
     {% for board in boards %}
-        <a class="board" href="#">
+        <a class="board" id="id{{board.id}}" href="#">
             <h2 style="float: left;">{{ board.name }}</h2>
-            <div class="pull-right" style="margin-top: 15px; margin-right: 20px;">
-                {{ buttons.delete(path('app_board_delete', {'id': board.id})) }}
+            <div class="pull-right">
+                <button type="submit" class="btn btn-danger btn-confirm board-delete-event">
+        			<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+    			</button>
             </div>
         </a>
-        <div class="board new" id="board-add-event">
-            <h2 style="float: left;">Create new board...</h2>
-            <div class="pop-up">
-            	<h3>Create Board<span id="popup-close-event">x</span></h3>
-            	<form action="{{ path('app_board_create') }}" method="post" class="form-horizontal" novalidate>
-					<div>
-						<input placeholder="Name" type="text" class="input-lg" required="required" name="app_board[name]" id="app_board_name">
-					</div>
-					<div>
-					    <button class="btn btn-primary btn-lg" type="submit"><i class="icon-ok"></i> Create</button>
-					    <a class="btn btn-danger btn-lg" href=""><i class="icon-remove"></i> Cancel</a>
-					</div>
-    			</form>
-            </div>
-        </div>
     {% endfor %}
+    <div class="board new" id="board-add-event">
+        <h2 style="float: left;">Create new board...</h2>
+        <div class="pop-up">
+        	<h3>Create Board<span id="popup-close-event">x</span></h3>
+				<input placeholder="Name" type="text" id="new-board-name" class="input-lg" required="required" name="app_board[name]" id="app_board_name">
+				<div>
+				    <button class="btn btn-primary btn-lg" id="new-board-event"><i class="icon-ok"></i> Create</button>
+				    <a class="btn btn-danger btn-lg" href=""><i class="icon-remove"></i> Cancel</a>
+				</div>
+			</form>
+        </div>
+	</div>
 {% endblock %}

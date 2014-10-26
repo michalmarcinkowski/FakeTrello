@@ -14,7 +14,7 @@ a.board:hover {
 
 .board {
     float: left;
-    width: 300px;
+    width: 260px;
     display: block;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -29,4 +29,7 @@ a.board:hover {
 }
 .board h2{
 	font-size:22px;	
+}
+.board-delete-event{
+	margin:15px 15px 0 0;
 }
