@@ -2,6 +2,15 @@
 
 {% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/pages/board.css') }}" media="screen"/>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('js/pages/board.js') }}"></script>
+{% endblock %}
+
 {% block body %}
     <div class="page-header">
         <div class="actions-menu pull-right">
@@ -17,5 +26,20 @@
                 {{ buttons.delete(path('app_board_delete', {'id': board.id})) }}
             </div>
         </a>
+        <div class="board new" id="board-add-event">
+            <h2 style="float: left;">Create new board...</h2>
+            <div class="pop-up">
+            	<h3>Create Board<span id="popup-close-event">x</span></h3>
+            	<form action="{{ path('app_board_create') }}" method="post" class="form-horizontal" novalidate>
+					<div>
+						<input placeholder="Name" type="text" class="input-lg" required="required" name="app_board[name]" id="app_board_name">
+					</div>
+					<div>
+					    <button class="btn btn-primary btn-lg" type="submit"><i class="icon-ok"></i> Create</button>
+					    <a class="btn btn-danger btn-lg" href=""><i class="icon-remove"></i> Cancel</a>
+					</div>
+    			</form>
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}
