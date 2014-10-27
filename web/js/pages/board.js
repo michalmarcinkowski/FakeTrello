@@ -14,27 +14,22 @@ $('#new-board-event').click(function(){
 	addBoard($('#new-board-name').val());
 });
 
-$ajax = {type: "POST",dataType: "json",cache: false};
+$ajax = {type: "GET",dataType: "json",cache: false};
 
 function deleteBoard($id){	
 	$ajax['data'] = {id:$id};
-	$ajax['url'] = 'some.php';
+	$ajax['url'] = 'boards/delete/json';
+	$ajax['success'] = function(data){
+		$('a#id'+$id).hide('slow');
+	};
+	$ajax['error'] = function(xhr){
+		$txt = $.parseJSON(xhr.responseText);
+		$('body>div.container>div.alert:first-child').hide('slow').remove();
+		$('body>div.container').prepend('<div class="alert alert-error" style="display:none">'+$txt[0].message+'</div>');
+		$('body>div.container>div.alert:first-child').show('slow');
+	};
 	
-	/*$.ajax($ajax).done(function( msg ) {
-		alert( "Data Saved: " + msg );
-	});*/
-	
-	msg = 'Test message';
-	//on success:
-	$('a#id'+$id).hide('slow');
-	$('body>div.container>div.alert:first-child').hide('slow').remove();
-	$('body>div.container').prepend('<div class="alert alert-success" style="display:none">'+msg+'</div>');
-	$('body>div.container>div.alert:first-child').show('slow');
-	
-	//on failure:
-	/*$('body>div.container>div.alert:first-child').hide('slow').remove();
-	$('body>div.container').prepend('<div class="alert alert-error" style="display:none">'+msg+'</div>');
-	$('body>div.container>div.alert:first-child').show('slow');*/
+	$.ajax($ajax);
 	
 }
 

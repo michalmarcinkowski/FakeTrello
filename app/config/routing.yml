@@ -22,3 +22,17 @@ app_board_delete:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    
+app_board_create_json:
+    pattern: /boards/new/json
+    methods: [GET]
+    defaults:
+      _controller: app.controller.board:createAction
+      _format: json
+      
+app_board_delete_json:
+    pattern: /boards/delete/json
+    methods: [GET]
+    defaults:
+      _controller: app.controller.board:deleteAction
+      _format: json
