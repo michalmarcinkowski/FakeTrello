@@ -131,4 +131,8 @@ class Board
     {
         return $this->lists;
     }
+
+    public function __toString() {
+        return $this->name;
+    }
 }
