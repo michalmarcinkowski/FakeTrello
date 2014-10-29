@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity
@@ -28,8 +30,15 @@ class Board
      **/
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity="BoardList", mappedBy="board")
+     * @var Collection/BoardList[]
+     **/
+    private $lists;
+
     public function __construct()
     {
+        $this->lists = new ArrayCollection();
     }
 
     /**
@@ -78,4 +87,48 @@ class Board
         return $this->name;
     }
 
+
+    /**
+     * @param BoardList $list
+     * @return $this
+     */
+    public function addList(BoardList $list)
+    {
+        if ($this->hasList($list)) {
+            return $this;
+        }
+        $this->lists->add($list);
+
+        return $this;
+    }
+
+    /**
+     * @param BoardList $list
+     * @return $this
+     */
+    public function removeList(BoardList $list)
+    {
+        if ($this->hasList($list)) {
+            $this->lists->removeElement($list);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param BoardList $list
+     * @return bool
+     */
+    public function hasList(BoardList $list)
+    {
+        return $this->lists->contains($list);
+    }
+
+    /**
+     * @return Collection/BoardList[]
+     */
+    public function getLists()
+    {
+        return $this->lists;
+    }
 }
