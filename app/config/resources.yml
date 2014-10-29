@@ -5,3 +5,8 @@ sylius_resource:
             templates: :Board
             classes:
                 model: AppBundle\Entity\Board
+        app.board_list:
+            driver: doctrine/orm
+            templates: :BoardList
+            classes:
+                model: AppBundle\Entity\BoardList

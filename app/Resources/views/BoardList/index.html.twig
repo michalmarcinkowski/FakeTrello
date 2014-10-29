@@ -1,0 +1,23 @@
+{% extends "layout.html.twig" %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+
+{% block body %}
+    <div class="page-header">
+        <div class="actions-menu pull-right">
+            {{ buttons.create(path('app_board_list_create'), 'Add list') }}
+        </div>
+        <h1><i class="glyphicon glyphicon-cog"></i> {{ 'Lists' }}</h1>
+    </div>
+
+    {% for list in board_lists %}
+        <a style="float:left; margin: 20px;" class="list" id="id{{list.id}}" href="#">
+            <h2 style="float: left;">{{ list.name }}</h2>
+            <div class="pull-right">
+                <button type="submit" class="btn btn-danger btn-confirm list-delete-event">
+        			<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+    			</button>
+            </div>
+        </a>
+    {% endfor %}
+{% endblock %}
