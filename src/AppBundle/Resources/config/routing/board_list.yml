@@ -1,10 +1,16 @@
+app_board_list_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: app.controller.boardList:indexAction
+
 app_board_list_create:
     pattern: /new
     methods: [GET, POST]
     defaults:
         _controller: app.controller.boardList:createAction
         _sylius:
-            redirect: homepage
+            redirect: app_board_list_index
 
 app_board_list_delete:
     pattern: /{id}
@@ -12,7 +18,7 @@ app_board_list_delete:
     defaults:
         _controller: app.controller.boardList:deleteAction
         _sylius:
-            redirect: homepage
+            redirect: app_board_list_index
 
 app_board_list_update:
     pattern: /{id}/edit
