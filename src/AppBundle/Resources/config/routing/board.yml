@@ -1,0 +1,38 @@
+app_board_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.board:createAction
+        _sylius:
+            redirect: homepage
+
+app_board_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: app.controller.board:deleteAction
+        _sylius:
+            redirect: homepage
+
+app_board_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: app.controller.board:updateAction
+        _sylius:
+            redirect: app_board_update
+
+app_board_create_json:
+    pattern: /new/json
+    methods: [POST]
+    defaults:
+      _controller: app.controller.board:createAction
+      _format: json
+
+app_board_delete_json:
+    pattern: /delete/json
+    methods: [DELETE]
+    defaults:
+      _controller: app.controller.board:deleteAction
+      _format: json
+
