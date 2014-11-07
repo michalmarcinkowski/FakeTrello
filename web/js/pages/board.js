@@ -14,10 +14,11 @@ $('#new-board-event').click(function(){
 	addBoard($('#new-board-name').val());
 });
 
-$ajax = {type: "GET",dataType: "json",cache: false};
+$ajax = {type: "POST",dataType: "json",cache: false};
 
 function deleteBoard($id){	
 	$ajax['data'] = {id:$id};
+	$ajax['type'] = 'DELETE';
 	$ajax['url'] = 'boards/delete/json';
 	$ajax['success'] = function(data){
 		$('a#id'+$id).hide('slow');
@@ -34,20 +35,28 @@ function deleteBoard($id){
 }
 
 function addBoard($name){
-	$ajax['data'] = {name:$name};
-	$ajax['url'] = 'some.php';
+	$ajax['data'] = {name:$name,_token:$('#token').val().serialize()};
+	$ajax['url'] = 'boards/new/json';
+	$ajax['success'] = function(data){
+		$('body>div.container>div.board.new').before('<a class="board" id="id'+$id+'" href="#"><h2 style="float: left;">'+$name+'</h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="glyphicon glyphicon-trash"></i> <span>Delete</span></button></div></a>');
+		$('#new-board-name').val('');
+	};
+	$ajax['error'] = function(xhr){
+		console.log(xhr);
+		/*$txt = $.parseJSON(xhr.responseText);
+		$('body>div.container>div.alert:first-child').hide('slow').remove();
+		$('body>div.container').prepend('<div class="alert alert-error" style="display:none">'+$txt[0].message+'</div>');
+		$('body>div.container>div.alert:first-child').show('slow');*/
+	};
 	
-	/*$.ajax($ajax).done(function( msg ) {
-		alert( "Data Saved: " + msg );
-	});*/
+	$.ajax($ajax);
 	
-	msg = 'Test message';$id = 5;
 	//on success:
-	$('body>div.container>div.board.new').before('<a class="board" id="id'+$id+'" href="#"><h2 style="float: left;">'+$name+'</h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="glyphicon glyphicon-trash"></i> <span>Delete</span></button></div></a>');
+	/*$('body>div.container>div.board.new').before('<a class="board" id="id'+$id+'" href="#"><h2 style="float: left;">'+$name+'</h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="glyphicon glyphicon-trash"></i> <span>Delete</span></button></div></a>');
 	$('body>div.container>div.alert:first-child').hide('slow').remove();
 	$('body>div.container').prepend('<div class="alert alert-success" style="display:none">'+msg+'</div>');
 	$('body>div.container>div.alert:first-child').show('slow');
-	$('#new-board-name').val('');
+	$('#new-board-name').val('');*/
 	
 	//on failure:
 	/*$('body>div.container>div.alert:first-child').hide('slow').remove();

@@ -2,6 +2,15 @@
 
 {% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/pages/board-list.css') }}" media="screen"/>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('js/pages/board-list.js') }}"></script>
+{% endblock %}
+
 {% block body %}
     <div class="page-header">
         <div class="actions-menu pull-right">
@@ -11,13 +20,36 @@
     </div>
 
     {% for list in board_lists %}
-        <a style="float:left; margin: 20px;" class="list" id="id{{list.id}}" href="#">
-            <h2 style="float: left;">{{ list.name }}</h2>
-            <div class="pull-right">
-                <button type="submit" class="btn btn-danger btn-confirm list-delete-event">
-        			<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
-    			</button>
-            </div>
+        <a class="list" id="id{{list.id}}" href="#">
+            <h2 style="float: left;">
+            	{{ list.name }} 
+            		<span>+
+            			<span>
+            				<span class="add-card-event">Add card</span>
+            				<span class="edit-list-event">Edit list</span>
+            				<span class="delete-list-event">Delete list</span>
+            			</span>
+            		</span>
+            </h2>
+            <span class="list-element">
+            	<span class="list-element-name">Demo element</span>
+            </span>
+            <span class="list-element">
+            	<span class="list-element-name">Demo element 2</span>
+            </span>
+            <span class="show-card-add-event">Add a card...</span>
         </a>
     {% endfor %}
+    <div class="board-list new" id="boardlist-add-event">
+        <h2 style="float: left;">Add a list...</h2>
+        <div class="pop-up">
+        	<h3>Create List<span id="popup-close-event">x</span></h3>
+				<input placeholder="Name" type="text" id="new-board-list-name" class="input-lg" required="required" name="name">
+				<div>
+				    <button class="btn btn-primary btn-lg" id="new-board-list-event"><i class="icon-ok"></i> Create</button>
+				    <a class="btn btn-danger btn-lg" href=""><i class="icon-remove"></i> Cancel</a>
+				</div>
+			</form>
+        </div>
+	</div>
 {% endblock %}
