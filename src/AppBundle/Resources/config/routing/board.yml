@@ -52,3 +52,26 @@ app_board_list_create:
             redirect:
                 route: app_board_show
                 parameters: { boardId: $boardId }
+                
+app_board_list_create_json:
+    pattern: /{boardId}/board-list/new/json
+    methods: [POST]
+    defaults:
+        _controller: app.controller.boardList:createAction
+        _format: json
+        _sylius:
+            redirect:
+                route: app_board_show
+                parameters: { boardId: $boardId }
+           
+app_board_list_delete_json:
+    pattern: /{boardId}/board-list/delete/json
+    methods: [DELETE]
+    defaults:
+        _controller: app.controller.boardList:deleteAction
+        _format: json
+        _sylius:
+            redirect:
+                route: app_board_show
+                parameters: { boardId: $boardId }
+
