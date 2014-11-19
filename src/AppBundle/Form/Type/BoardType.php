@@ -12,9 +12,6 @@ class BoardType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('user', 'entity', array(
-                'class' => 'AppBundle\Entity\User'
-            ))
         ;
     }
 

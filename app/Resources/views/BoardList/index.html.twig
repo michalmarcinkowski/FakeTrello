@@ -14,9 +14,9 @@
 {% block body %}
     <div class="page-header">
         <div class="actions-menu pull-right">
-            {{ buttons.create(path('app_board_list_create'), 'Add list') }}
+            {{ buttons.create(path('app_board_list_create', {'boardId': board.id}), 'Add list') }}
         </div>
-        <h1><i class="glyphicon glyphicon-cog"></i> {{ 'Lists' }}</h1>
+        <h1><i class="glyphicon glyphicon-cog"></i> {{  board.name }}</h1>
     </div>
 
     {% for list in board_lists %}

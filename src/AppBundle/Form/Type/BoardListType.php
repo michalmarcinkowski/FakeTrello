@@ -12,9 +12,6 @@ class BoardListType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('board', 'entity', array(
-                'class' => 'AppBundle\Entity\Board'
-            ))
         ;
     }
 

@@ -1,3 +1,9 @@
+app_board_show:
+    pattern: /{boardId}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.boardList:allForBoardAction
+
 app_board_create:
     pattern: /new
     methods: [GET, POST]
@@ -35,3 +41,14 @@ app_board_delete_json:
     defaults:
       _controller: app.controller.board:deleteAction
       _format: json
+
+
+app_board_list_create:
+    pattern: /{boardId}/board-list/new
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.boardList:createAction
+        _sylius:
+            redirect:
+                route: app_board_show
+                parameters: { boardId: $boardId }

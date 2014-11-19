@@ -11,3 +11,4 @@ sylius_resource:
             templates: :BoardList
             classes:
                 model: AppBundle\Entity\BoardList
+                controller: AppBundle\Controller\BoardListController

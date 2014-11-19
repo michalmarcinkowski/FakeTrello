@@ -8,19 +8,22 @@ class BoardController extends ResourceController
 {
     public function allForUserAction()
     {
+        $resource = $this->createNew();
+        $form = $this->getForm($resource);
+
         $currentUser = $this->getUser();
-
-        $repository = $this->getRepository();
-
         $criteria = array('user' => $currentUser);
 
+        $repository = $this->getRepository();
         $resources = $repository->findBy($criteria);
 
         $view = $this
             ->view()
             ->setTemplate($this->config->getTemplate('index.html'))
-            ->setTemplateVar($this->config->getPluralResourceName())
-            ->setData($resources)
+            ->setData(array(
+                $this->config->getPluralResourceName() => $resources,
+                'form'                                 => $form->createView(),
+            ))
         ;
 
         return $this->handleView($view);

@@ -4,14 +4,6 @@ app_board_list_index:
     defaults:
         _controller: app.controller.boardList:indexAction
 
-app_board_list_create:
-    pattern: /new
-    methods: [GET, POST]
-    defaults:
-        _controller: app.controller.boardList:createAction
-        _sylius:
-            redirect: app_board_list_index
-
 app_board_list_delete:
     pattern: /{id}
     methods: [DELETE]
