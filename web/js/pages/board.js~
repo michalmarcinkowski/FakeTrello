@@ -1,6 +1,4 @@
- $( "body>div.container>div.boards" ).sortable({
-cancel: ".board.new"
-}).disableSelection();
+ $( "body>div.container>div.boards" ).sortable().disableSelection();
 
 
 $('#board-add-event').click(function(){
@@ -19,7 +17,7 @@ $('#new-board-event').click(function(){
 	addBoard($('#app_board_name').val(),$('#app_board__token').val());
 });
 
-$ajax = {type: "POST",dataType: "json",cache: false};
+$ajax = {type: "POST",dataType: "json",cache: false, contentType: "text/plain"};
 
 function deleteBoard($id){	
 	$ajax['data'] = {id:$id};
@@ -40,13 +38,12 @@ function deleteBoard($id){
 }
 
 function addBoard($name,$token){
-	alert($token);
 	$ajax['data'] = {name:$name,_token:$token};
 	$ajax['url'] = 'boards/new/json';
 	$ajax['success'] = function(data){
 		console.log(data);
-		//$('body>div.container>div.board.new').before('<a class="board" id="id'+$id+'" href="#"><h2 style="float: left;">'+$name+'</h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="glyphicon glyphicon-trash"></i> <span>Delete</span></button></div></a>');
-		//$('#new-board-name').val('');
+//		$('body>div.container>div.board.new').before('<a class="board" id="id'+$id+'" href="#"><h2 style="float: left;">'+$name+'</h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="glyphicon glyphicon-trash"></i> <span>Delete</span></button></div></a>');
+//		$('#new-board-name').val('');
 	};
 	$ajax['error'] = function(xhr){
 		console.log(xhr);
