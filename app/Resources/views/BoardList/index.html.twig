@@ -20,12 +20,11 @@
     </div>
 	<div class="board-lists">
 	    {% for list in board_lists %}
-		  <a class="list" id="id{{list.id}}" href="#">
+		  <a class="list" id="id{{list.id}}">
 		      <h2 style="float: left;">
 		      	{{ list.name }} 
 		      		<span>+
 		      			<span>
-		      				<span class="add-card-event">Add card</span>
 		      				<span class="edit-list-event">Edit list</span>
 		      				<span class="delete-list-event">Delete list</span>
 		      			</span>
@@ -39,7 +38,7 @@
 					<span class="list-element-name">Demo element 2</span>
 				</span>
 		      </span>
-		      <span class="show-card-add-event">Add a card...</span>
+		      <span class="show-card-add-event">Add a card...<input placeholder="The card content"></span>
 		  </a>
 	    {% endfor %}
     </div>

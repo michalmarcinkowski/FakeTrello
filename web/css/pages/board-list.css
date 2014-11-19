@@ -113,9 +113,29 @@ a.list span.show-card-add-event{
     padding: 7px 10px;
     position: relative;
     text-decoration: none;
+    cursor:pointer;
+}
+a.list span.show-card-add-event input{
+	opacity:0;
+	z-index:-1;
+	transition:all 500ms ease;
+	position:absolute;
+	top:3px;
+	left:5px;
+	right:5px;
 }
 a.list span.show-card-add-event:hover{
 	background: none repeat scroll 0 0 #c3c3c3;
     color: #222;
     text-decoration: underline;	
+}
+a.list span.show-card-add-event.active{
+	color:transparent;
+}
+a.list span.show-card-add-event.active input{
+	opacity:1;
+	z-index:5;
+}
+input#new-board-list-name{
+	width:164px;
 }
