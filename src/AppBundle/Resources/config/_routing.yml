@@ -2,7 +2,7 @@ homepage:
     pattern: /
     methods: [GET]
     defaults:
-        _controller: app.controller.board:indexAction
+        _controller: app.controller.board:allForUserAction
 
 app_board:
     resource: @AppBundle/Resources/config/routing/board.yml

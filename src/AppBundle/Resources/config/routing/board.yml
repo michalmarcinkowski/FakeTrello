@@ -35,4 +35,3 @@ app_board_delete_json:
     defaults:
       _controller: app.controller.board:deleteAction
       _format: json
-

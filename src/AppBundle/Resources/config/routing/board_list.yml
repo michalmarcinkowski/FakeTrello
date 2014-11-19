@@ -27,7 +27,7 @@ app_board_list_update:
         _controller: app.controller.boardList:updateAction
         _sylius:
             redirect: app_board_list_update
-            
+
 app_board_list_delete_json:
     pattern: /delete/json
     methods: [DELETE]

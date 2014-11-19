@@ -50,7 +50,7 @@ class Board
     }
 
     /**
-     * @param User $user
+     * @param  User $user
      * @return User
      */
     public function setUser(User $user)
@@ -69,7 +69,7 @@ class Board
     }
 
     /**
-     * @param string $name
+     * @param  string $name
      * @return $this
      */
     public function setName($name)
@@ -87,9 +87,8 @@ class Board
         return $this->name;
     }
 
-
     /**
-     * @param BoardList $list
+     * @param  BoardList $list
      * @return $this
      */
     public function addList(BoardList $list)
@@ -103,7 +102,7 @@ class Board
     }
 
     /**
-     * @param BoardList $list
+     * @param  BoardList $list
      * @return $this
      */
     public function removeList(BoardList $list)
@@ -116,7 +115,7 @@ class Board
     }
 
     /**
-     * @param BoardList $list
+     * @param  BoardList $list
      * @return bool
      */
     public function hasList(BoardList $list)
@@ -132,7 +131,8 @@ class Board
         return $this->lists;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->name;
     }
 }

@@ -25,7 +25,6 @@ class User extends BaseUser
      **/
     private $boards;
 
-
     public function __construct()
     {
         parent::__construct();
@@ -41,7 +40,7 @@ class User extends BaseUser
     }
 
     /**
-     * @param Board $board
+     * @param  Board $board
      * @return $this
      */
     public function addBoard(Board $board)
@@ -55,7 +54,7 @@ class User extends BaseUser
     }
 
     /**
-     * @param Board $board
+     * @param  Board $board
      * @return $this
      */
     public function removeBoard(Board $board)
@@ -63,11 +62,12 @@ class User extends BaseUser
         if ($this->hasBoard($board)) {
             $this->boards->removeElement($board);
         }
+
         return $this;
     }
 
     /**
-     * @param Board $board
+     * @param  Board $board
      * @return bool
      */
     public function hasBoard(Board $board)

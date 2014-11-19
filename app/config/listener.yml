@@ -1,0 +1,8 @@
+services:
+    app.listener.board_blame:
+        class: AppBundle\EventListener\BoardBlameListener
+        arguments:
+            - @security.context
+        tags:
+            - { name: kernel.event_listener, event: app.board.pre_create, method: blameBoard }
+            - { name: kernel.event_listener, event: app.board.pre_update, method: blameBoard }

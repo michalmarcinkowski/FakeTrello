@@ -37,7 +37,7 @@ class BoardList
     }
 
     /**
-     * @param string $name
+     * @param  string $name
      * @return $this
      */
     public function setName($name)
@@ -56,7 +56,7 @@ class BoardList
     }
 
     /**
-     * @param Board $board
+     * @param  Board $board
      * @return $this
      */
     public function setBoard($board)
