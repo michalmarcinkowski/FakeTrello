@@ -38,7 +38,7 @@ function deleteBoard($id){
 }
 
 function addBoard($name,$token){
-	$ajax['data'] = {app_board:{name:$name,_token:$token}};
+	$ajax['data'] = {name:$name};
 	$ajax['url'] = 'boards/new/json';
 	$ajax['success'] = function(data){
 		console.log(data);
