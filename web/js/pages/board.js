@@ -1,3 +1,6 @@
+ $( "body>div.container>div.boards" ).sortable().disableSelection();
+
+
 $('#board-add-event').click(function(){
 	$(this).find('.pop-up').addClass('active');
 });
@@ -11,10 +14,16 @@ $('.board-delete-event').click(function(){
 });
 
 $('#new-board-event').click(function(){
-	addBoard($('#new-board-name').val());
+	addBoard($('#app_board_name').val());
 });
 
 $ajax = {type: "POST",dataType: "json",cache: false};
+$ajax['error'] = function(xhr){
+		$txt = $.parseJSON(xhr.responseText);
+		$('body>div.container>div.alert:first-child').hide('slow').remove();
+		$('body>div.container').prepend('<div class="alert alert-error" style="display:none">'+$txt[0].message+'</div>');
+		$('body>div.container>div.alert:first-child').show('slow');
+	};
 
 function deleteBoard($id){	
 	$ajax['data'] = {id:$id};
@@ -23,44 +32,18 @@ function deleteBoard($id){
 	$ajax['success'] = function(data){
 		$('a#id'+$id).hide('slow');
 	};
-	$ajax['error'] = function(xhr){
-		$txt = $.parseJSON(xhr.responseText);
-		$('body>div.container>div.alert:first-child').hide('slow').remove();
-		$('body>div.container').prepend('<div class="alert alert-error" style="display:none">'+$txt[0].message+'</div>');
-		$('body>div.container>div.alert:first-child').show('slow');
-	};
 	
 	$.ajax($ajax);
 	
 }
 
 function addBoard($name){
-	$ajax['data'] = {name:$name,_token:$('#token').val().serialize()};
+	$ajax['data'] = {name:$name};
 	$ajax['url'] = 'boards/new/json';
 	$ajax['success'] = function(data){
-		$('body>div.container>div.board.new').before('<a class="board" id="id'+$id+'" href="#"><h2 style="float: left;">'+$name+'</h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="glyphicon glyphicon-trash"></i> <span>Delete</span></button></div></a>');
-		$('#new-board-name').val('');
-	};
-	$ajax['error'] = function(xhr){
-		console.log(xhr);
-		/*$txt = $.parseJSON(xhr.responseText);
-		$('body>div.container>div.alert:first-child').hide('slow').remove();
-		$('body>div.container').prepend('<div class="alert alert-error" style="display:none">'+$txt[0].message+'</div>');
-		$('body>div.container>div.alert:first-child').show('slow');*/
+		$('.container>.boards').append('<a class="board" id="id'+data.id+'" href="#"><h2 style="float: left;">'+data.name+'</h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="glyphicon glyphicon-trash"></i> <span>Delete</span></button></div></a>');
+		$('#app_board_name').val('');
 	};
 	
 	$.ajax($ajax);
-	
-	//on success:
-	/*$('body>div.container>div.board.new').before('<a class="board" id="id'+$id+'" href="#"><h2 style="float: left;">'+$name+'</h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="glyphicon glyphicon-trash"></i> <span>Delete</span></button></div></a>');
-	$('body>div.container>div.alert:first-child').hide('slow').remove();
-	$('body>div.container').prepend('<div class="alert alert-success" style="display:none">'+msg+'</div>');
-	$('body>div.container>div.alert:first-child').show('slow');
-	$('#new-board-name').val('');*/
-	
-	//on failure:
-	/*$('body>div.container>div.alert:first-child').hide('slow').remove();
-	$('body>div.container').prepend('<div class="alert alert-error" style="display:none">'+msg+'</div>');
-	$('body>div.container>div.alert:first-child').show('slow');*/
-	
 }
