@@ -1,3 +1,9 @@
+ $( "body>div.container>div.board-lists" ).sortable().disableSelection();
+ 
+  $( "div.board-lists>a span.card-list" ).sortable({
+connectWith: "div.board-lists>a span.card-list",
+}).disableSelection();
+ 
 $('#boardlist-add-event').click(function(){
 	$(this).find('.pop-up').addClass('active');
 });
