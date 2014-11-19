@@ -18,28 +18,31 @@
         </div>
         <h1><i class="glyphicon glyphicon-cog"></i> {{  board.name }}</h1>
     </div>
-
-    {% for list in board_lists %}
-        <a class="list" id="id{{list.id}}" href="#">
-            <h2 style="float: left;">
-            	{{ list.name }} 
-            		<span>+
-            			<span>
-            				<span class="add-card-event">Add card</span>
-            				<span class="edit-list-event">Edit list</span>
-            				<span class="delete-list-event">Delete list</span>
-            			</span>
-            		</span>
-            </h2>
-            <span class="list-element">
-            	<span class="list-element-name">Demo element</span>
-            </span>
-            <span class="list-element">
-            	<span class="list-element-name">Demo element 2</span>
-            </span>
-            <span class="show-card-add-event">Add a card...</span>
-        </a>
-    {% endfor %}
+	<div class="board-lists">
+	    {% for list in board_lists %}
+		  <a class="list" id="id{{list.id}}" href="#">
+		      <h2 style="float: left;">
+		      	{{ list.name }} 
+		      		<span>+
+		      			<span>
+		      				<span class="add-card-event">Add card</span>
+		      				<span class="edit-list-event">Edit list</span>
+		      				<span class="delete-list-event">Delete list</span>
+		      			</span>
+		      		</span>
+		      </h2>
+		      <span class="card-list">
+				<span class="list-element">
+					<span class="list-element-name">Demo element</span>
+				</span>
+				<span class="list-element">
+					<span class="list-element-name">Demo element 2</span>
+				</span>
+		      </span>
+		      <span class="show-card-add-event">Add a card...</span>
+		  </a>
+	    {% endfor %}
+    </div>
     <div class="board-list new" id="boardlist-add-event">
         <h2 style="float: left;">Add a list...</h2>
         <div class="pop-up">
