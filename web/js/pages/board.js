@@ -38,13 +38,12 @@ function deleteBoard($id){
 }
 
 function addBoard($name,$token){
-	alert($token);
-	$ajax['data'] = {name:$name,_token:$token};
+	$ajax['data'] = {app_board: {name:$name,_token:$token}};
 	$ajax['url'] = 'boards/new/json';
 	$ajax['success'] = function(data){
 		console.log(data);
-		//$('body>div.container>div.board.new').before('<a class="board" id="id'+$id+'" href="#"><h2 style="float: left;">'+$name+'</h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="glyphicon glyphicon-trash"></i> <span>Delete</span></button></div></a>');
-		//$('#new-board-name').val('');
+//		$('body>div.container>div.board.new').before('<a class="board" id="id'+$id+'" href="#"><h2 style="float: left;">'+$name+'</h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="glyphicon glyphicon-trash"></i> <span>Delete</span></button></div></a>');
+//		$('#new-board-name').val('');
 	};
 	$ajax['error'] = function(xhr){
 		console.log(xhr);
