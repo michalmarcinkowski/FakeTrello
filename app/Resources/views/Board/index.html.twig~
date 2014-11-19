@@ -31,8 +31,7 @@
 		      </div>
 		  </a>
 	    {% endfor %}
-	</div>
-	<div class="board new" id="board-add-event">
+	    <div class="board new" id="board-add-event">
 		  <h2 style="float: left;">Create new board...</h2>
 		  <div class="pop-up">
 		      {{ form_widget(form.name, {'attr': {'placeholder': 'Name'} }) }}
@@ -50,5 +49,6 @@
 				{#</form>#}
 		  </div>
 		</div>
+	</div>
 
 {% endblock %}

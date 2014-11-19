@@ -1,4 +1,6 @@
- $( "body>div.container>div.boards" ).sortable().disableSelection();
+ $( "body>div.container>div.boards" ).sortable({
+cancel: ".board.new"
+}).disableSelection();
 
 
 $('#board-add-event').click(function(){
