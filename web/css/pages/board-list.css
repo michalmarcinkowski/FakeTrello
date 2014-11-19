@@ -17,7 +17,7 @@ body>.container>.board-lists>a, div.board-list.new{
 body>.container>.board-lists>a:hover{
 	text-decoration:none;
 }
-body > .container > .board-lists > a:nth-child(5n){
+body > .container > .board-lists > a:nth-child(4n+1){
 	clear:both;
 }
 div.board-list.new:hover{
