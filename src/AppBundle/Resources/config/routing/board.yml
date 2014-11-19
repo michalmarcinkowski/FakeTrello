@@ -1,9 +1,3 @@
-app_board_show:
-    pattern: /{boardId}
-    methods: [GET]
-    defaults:
-        _controller: app.controller.boardList:allForBoardAction
-
 app_board_create:
     pattern: /new
     methods: [GET, POST]
@@ -11,6 +5,12 @@ app_board_create:
         _controller: app.controller.board:createAction
         _sylius:
             redirect: homepage
+
+app_board_show:
+    pattern: /{boardId}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.boardList:allForBoardAction
 
 app_board_delete:
     pattern: /{id}
