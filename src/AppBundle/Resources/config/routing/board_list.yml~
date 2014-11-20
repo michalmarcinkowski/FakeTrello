@@ -1,0 +1,23 @@
+app_board_list_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: app.controller.boardList:indexAction
+
+app_board_list_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: app.controller.boardList:deleteAction
+        _sylius:
+            redirect: app_board_list_index
+
+app_board_list_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: app.controller.boardList:updateAction
+        _sylius:
+            redirect: app_board_list_update
+
+      

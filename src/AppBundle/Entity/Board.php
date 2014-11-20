@@ -31,7 +31,7 @@ class Board
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="BoardList", mappedBy="board")
+     * @ORM\OneToMany(targetEntity="BoardList", mappedBy="board", cascade="remove")
      * @var Collection/BoardList[]
      **/
     private $lists;
