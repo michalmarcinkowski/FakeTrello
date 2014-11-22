@@ -25,25 +25,25 @@ $ajax['error'] = function(xhr){
 		$('body>div.container>div.alert:first-child').show('slow');
 	};
 
-function deleteBoard($id){	
+function deleteBoard($id){
 	$ajax['data'] = {id:$id};
 	$ajax['type'] = 'DELETE';
 	$ajax['url'] = 'boards/delete/json';
 	$ajax['success'] = function(data){
 		$('a#id'+$id).hide('slow');
 	};
-	
+
 	$.ajax($ajax);
-	
+
 }
 
 function addBoard($name){
 	$ajax['data'] = {name:$name};
 	$ajax['url'] = 'boards/new/json';
 	$ajax['success'] = function(data){
-		$('.container>.boards').append('<a class="board" id="id'+data.id+'" href="#"><h2 style="float: left;">'+data.name+'</h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="glyphicon glyphicon-trash"></i> <span>Delete</span></button></div></a>');
+		$('.container>.boards').append('<a class="board" id="id'+data.id+'" href="/app_dev.php/boards/'+data.id+'"><h2 style="float: left;">'+data.name+'</h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="glyphicon glyphicon-trash"></i> <span>Delete</span></button></div></a>');
 		$('#app_board_name').val('');
 	};
-	
+
 	$.ajax($ajax);
 }

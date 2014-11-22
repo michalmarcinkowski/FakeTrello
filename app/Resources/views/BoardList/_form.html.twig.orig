@@ -1,5 +1,0 @@
-{{ form_row(form.name, {'attr': {'class': 'input-lg'}}) }}
-<<<<<<< HEAD
-
-=======
->>>>>>> 4e2eb089040500fa12021d5c60cd8e46145d2173

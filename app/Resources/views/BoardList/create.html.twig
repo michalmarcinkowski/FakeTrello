@@ -10,7 +10,7 @@
 
     {{ form_errors(form) }}
 
-    <form action="{{ path('app_board_list_create', {'boardId': boardId}) }}" method="post" class="form-horizontal" novalidate>
+    <form action="{{ path('app_board_list_create', {'boardId': boardId}) }}" method="post" class="form-horizontal" >
         {% include ':BoardList:_form.html.twig' %}
         {{ create() }}
     </form>
