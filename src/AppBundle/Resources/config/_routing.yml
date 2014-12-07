@@ -7,7 +7,3 @@ homepage:
 app_board:
     resource: @AppBundle/Resources/config/routing/board.yml
     prefix: /boards
-
-app_board_list:
-    resource: @AppBundle/Resources/config/routing/board_list.yml
-    prefix: /board-lists

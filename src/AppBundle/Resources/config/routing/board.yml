@@ -42,36 +42,6 @@ app_board_delete_json:
       _controller: app.controller.board:deleteAction
       _format: json
 
-
-app_board_list_create:
-    pattern: /{boardId}/board-list/new
-    methods: [GET, POST]
-    defaults:
-        _controller: app.controller.boardList:createAction
-        _sylius:
-            redirect:
-                route: app_board_show
-                parameters: { boardId: $boardId }
-                
-app_board_list_create_json:
-    pattern: /{boardId}/board-list/new/json
-    methods: [POST]
-    defaults:
-        _controller: app.controller.boardList:createAction
-        _format: json
-        _sylius:
-            redirect:
-                route: app_board_show
-                parameters: { boardId: $boardId }
-           
-app_board_list_delete_json:
-    pattern: /{boardId}/board-list/delete/json
-    methods: [DELETE]
-    defaults:
-        _controller: app.controller.boardList:deleteAction
-        _format: json
-        _sylius:
-            redirect:
-                route: app_board_show
-                parameters: { boardId: $boardId }
-
+app_board_list:
+    resource: @AppBundle/Resources/config/routing/board_list.yml
+    prefix: /{boardId}/board-list

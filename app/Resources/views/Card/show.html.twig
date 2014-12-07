@@ -1,0 +1,16 @@
+{% extends "layout.html.twig" %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/pages/board-list.css') }}" media="screen"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/pages/board-list.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    {% include ':Card:_details.html.twig' %}
+{% endblock %}

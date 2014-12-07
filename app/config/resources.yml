@@ -12,3 +12,9 @@ sylius_resource:
             classes:
                 model: AppBundle\Entity\BoardList
                 controller: AppBundle\Controller\BoardListController
+        app.card:
+            driver: doctrine/orm
+            templates: :Card
+            classes:
+                model: AppBundle\Entity\Card
+                controller: AppBundle\Controller\CardController

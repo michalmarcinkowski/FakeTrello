@@ -1,16 +1,12 @@
-app_board_list_index:
-    pattern: /
-    methods: [GET]
-    defaults:
-        _controller: app.controller.boardList:indexAction
-
 app_board_list_delete:
     pattern: /{id}
     methods: [DELETE]
     defaults:
         _controller: app.controller.boardList:deleteAction
         _sylius:
-            redirect: app_board_list_index
+            redirect:
+                route: app_board_show
+                parameters: { boardId: $boardId }
 
 app_board_list_update:
     pattern: /{id}/edit
@@ -18,6 +14,42 @@ app_board_list_update:
     defaults:
         _controller: app.controller.boardList:updateAction
         _sylius:
-            redirect: app_board_list_update
+            redirect:
+                route: app_board_list_update
+                parameters: { boardId: $boardId, id: $id }
 
-      
+app_board_list_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.boardList:createAction
+        _sylius:
+            redirect:
+                route: app_board_show
+                parameters: { boardId: $boardId }
+
+app_board_list_create_json:
+    pattern: /new/json
+    methods: [POST]
+    defaults:
+        _controller: app.controller.boardList:createAction
+        _format: json
+        _sylius:
+            redirect:
+                route: app_board_show
+                parameters: { boardId: $boardId }
+
+app_board_list_delete_json:
+    pattern: /delete/json
+    methods: [DELETE]
+    defaults:
+        _controller: app.controller.boardList:deleteAction
+        _format: json
+        _sylius:
+            redirect:
+                route: app_board_show
+                parameters: { boardId: $boardId }
+
+app_card:
+    resource: @AppBundle/Resources/config/routing/card.yml
+    prefix: /{boardListId}/card
