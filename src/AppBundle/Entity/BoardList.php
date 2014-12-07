@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +29,17 @@ class BoardList
      * @ORM\JoinColumn(name="board_id", referencedColumnName="id")
      **/
     private $board;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Card", mappedBy="boardList", cascade="remove")
+     * @var Collection/Card[]
+     **/
+    private $cards;
+
+    public function __construct()
+    {
+        $this->cards = new ArrayCollection();
+    }
 
     /**
      * @return integer
@@ -72,5 +85,49 @@ class BoardList
     public function getBoard()
     {
         return $this->board;
+    }
+
+    /**
+     * @param  Card  $card
+     * @return $this
+     */
+    public function addCard(Card $card)
+    {
+        if ($this->hasCard($card)) {
+            return $this;
+        }
+        $this->cards->add($card);
+
+        return $this;
+    }
+
+    /**
+     * @param  Card  $card
+     * @return $this
+     */
+    public function removeCard(Card $card)
+    {
+        if ($this->hasCard($card)) {
+            $this->cards->removeElement($card);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param  Card $card
+     * @return bool
+     */
+    public function hasCard(Card $card)
+    {
+        return $this->cards->contains($card);
+    }
+
+    /**
+     * @return Collection/Card[]
+     */
+    public function getCards()
+    {
+        return $this->cards;
     }
 }

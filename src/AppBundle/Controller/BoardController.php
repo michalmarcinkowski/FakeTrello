@@ -12,16 +12,12 @@ class BoardController extends ResourceController
         $form = $this->getForm($resource);
 
         $currentUser = $this->getUser();
-        $criteria = array('user' => $currentUser);
-
-        $repository = $this->getRepository();
-        $resources = $repository->findBy($criteria);
 
         $view = $this
             ->view()
             ->setTemplate($this->config->getTemplate('index.html'))
             ->setData(array(
-                $this->config->getPluralResourceName() => $resources,
+                $this->config->getPluralResourceName() => $currentUser->getBoards(),
                 'form'                                 => $form->createView(),
             ))
         ;

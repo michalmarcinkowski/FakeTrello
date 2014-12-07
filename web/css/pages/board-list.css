@@ -89,7 +89,20 @@ a.list span.list-element{
     background-color: #fff;
     border-bottom: 1px solid #ccc;
     border-radius: 3px;
-    margin-bottom: 5px;
+    max-width: 300px;
+    min-height: 20px;
+    color:#393939;
+    text-decoration:none !important;
+    margin:3px;
+    display:block;
+}
+a.list a.list-element{
+	padding: 6px 8px 4px;
+    position: relative;
+    z-index: 10;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    border-radius: 3px;
     max-width: 300px;
     min-height: 20px;
     color:#393939;
@@ -101,6 +114,10 @@ a.list span.card-list{
 	padding:5px 0;
 }
 a.list span.list-element:hover{
+	background-color: #f0f0f0;
+    border-bottom-color: #c2c2c2;
+}
+a.list a.list-element:hover{
 	background-color: #f0f0f0;
     border-bottom-color: #c2c2c2;
 }

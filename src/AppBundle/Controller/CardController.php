@@ -4,32 +4,9 @@ namespace AppBundle\Controller;
 
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Board;
 
-class BoardListController extends ResourceController
+class CardController extends ResourceController
 {
-    public function allForBoardAction($boardId)
-    {
-        $resource = $this->createNew();
-        $form = $this->getForm($resource);
-
-        $boardRepository = $this->get('app.repository.board');
-        /** @var Board $board */
-        $board = $boardRepository->find($boardId);
-
-        $view = $this
-            ->view()
-            ->setTemplate($this->config->getTemplate('index.html'))
-            ->setData(array(
-                $this->config->getPluralResourceName() => $board->getLists(),
-                'form'                                 => $form->createView(),
-                'board'                                => $board
-            ))
-        ;
-
-        return $this->handleView($view);
-    }
-
     /**
      * {@inherit}
      */
@@ -39,11 +16,12 @@ class BoardListController extends ResourceController
         $form = $this->getForm($resource);
 
         $boardId = $request->get('boardId');
+        $boardListId = $request->get('boardListId');
 
         if ($form->handleRequest($request)->isValid()) {
-            $boardRepository = $this->get('app.repository.board');
-            $board = $boardRepository->find($boardId);
-            $resource->setBoard($board);
+            $boardListRepository = $this->get('app.repository.board_list');
+            $boardList = $boardListRepository->find($boardListId);
+            $resource->setBoardList($boardList);
             $resource = $this->domainManager->create($resource);
 
             if ($this->config->isApiRequest()) {
@@ -67,7 +45,8 @@ class BoardListController extends ResourceController
             ->setData(array(
                 $this->config->getResourceName() => $resource,
                 'form'                           => $form->createView(),
-                'boardId'                        => $boardId
+                'boardId'                        => $boardId,
+                'boardListId'                    => $boardListId
             ))
         ;
 

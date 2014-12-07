@@ -1,0 +1,34 @@
+app_card_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.card:createAction
+        _sylius:
+            redirect:
+                route: app_board_show
+                parameters: { boardId: $boardId }
+app_card_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: app.controller.card:deleteAction
+        _sylius:
+            redirect:
+                route: app_board_show
+                parameters: { boardId: $boardId }
+
+app_card_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: app.controller.card:updateAction
+        _sylius:
+            redirect:
+                route: app_card_update
+                parameters: { boardId: $boardId, boardListId: $boardListId, id: $id }
+
+app_card_show:
+    pattern: /{id}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.card:showAction
