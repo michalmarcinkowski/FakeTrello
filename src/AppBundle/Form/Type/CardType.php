@@ -12,7 +12,14 @@ class CardType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description', 'textarea')
+            ->add('description', 'textarea', array(
+                'required' => false,
+            ))
+            ->add('deadline', 'date', array(
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+                'required' => false,
+            ))
         ;
     }
 
