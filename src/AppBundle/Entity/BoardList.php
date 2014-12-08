@@ -72,7 +72,7 @@ class BoardList
      * @param  Board $board
      * @return $this
      */
-    public function setBoard($board)
+    public function setBoard(Board $board)
     {
         $this->board = $board;
 

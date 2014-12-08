@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Card;
 
 class CardController extends ResourceController
 {
@@ -51,5 +53,20 @@ class CardController extends ResourceController
         ;
 
         return $this->handleView($view);
+    }
+
+    public function moveAction($cardId, $targetBoardListId)
+    {
+        $boardListRepository = $this->get('app.repository.board_list');
+        $boardList = $boardListRepository->find($targetBoardListId);
+        $cardRepository = $this->get('app.repository.card');
+        /** @var Card $card */
+        $card = $cardRepository->find($cardId);
+        $card->setBoardList($boardList);
+        $entityManager = $this->container->get('doctrine')->getManager();
+        /** @var EntityManagerInterface $entityManager */
+        $entityManager->persist($card);
+        $entityManager->flush();
+        return $this->redirectHandler->redirectToReferer();
     }
 }
