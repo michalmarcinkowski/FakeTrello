@@ -12,6 +12,18 @@ app_board_show:
     defaults:
         _controller: app.controller.boardList:allForBoardAction
 
+app_board_star:
+    pattern: /{id}/star
+    methods: [GET, PUT]
+    defaults:
+        _controller: app.controller.board:starAction
+
+app_board_unstar:
+    pattern: /{id}/unstar
+    methods: [GET, PUT]
+    defaults:
+        _controller: app.controller.board:unstarAction
+
 app_board_delete:
     pattern: /{id}
     methods: [DELETE]

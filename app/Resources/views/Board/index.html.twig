@@ -24,6 +24,19 @@
 	    {% for board in boards %}
 		  <a class="board" id="id{{board.id}}" href="{{ path('app_board_show', { 'boardId': board.id}) }}">
 		      <h2 style="float: left;">{{ board.name }}</h2>
+              {# too much logic in a template, should be replaced by twig helper, but we don't care in this project :) #}
+              {# check if board is already starred #}
+              {% set starred = false %}
+              {% for starredBoard in app.user.starredBoards if starredBoard.id == board.id %}
+                  {% set starred = true %}
+              {% endfor %}
+              {# display appriopriate link #}
+              {% if starred == true %}
+                  <a href="{{ path('app_board_unstar', {'id': board.id}) }}">unstar</a>
+              {% else %}
+                  <a href="{{ path('app_board_star', {'id': board.id}) }}">star</a>
+              {% endif %}
+
 		      <div class="pull-right">
 		          <button type="submit" class="btn btn-danger btn-confirm board-delete-event">
 		  			<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
