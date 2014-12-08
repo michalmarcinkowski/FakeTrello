@@ -80,7 +80,7 @@ class Card
      * @param  BoardList $boardList
      * @return $this
      */
-    public function setBoardList($boardList)
+    public function setBoardList(BoardList $boardList)
     {
         $this->boardList = $boardList;
 
