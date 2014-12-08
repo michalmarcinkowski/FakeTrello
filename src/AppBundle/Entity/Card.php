@@ -28,6 +28,12 @@ class Card
     private $description;
 
     /**
+     * @var \DateTime
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $deadline;
+
+    /**
      * @ORM\ManyToOne(targetEntity="BoardList", inversedBy="cards")
      * @ORM\JoinColumn(name="board_list_id", referencedColumnName="id")
      **/
@@ -74,6 +80,22 @@ class Card
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * @param \DateTime $deadline
+     */
+    public function setDeadline($deadline)
+    {
+        $this->deadline = $deadline;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDeadline()
+    {
+        return $this->deadline;
     }
 
     /**

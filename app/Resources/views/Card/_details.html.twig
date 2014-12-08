@@ -1,5 +1,8 @@
 <div>
     <h2>{{ card.name }}</h2>
+    {% if card.deadline is not empty %}
+        <span>{{ card.deadline|date('d M Y') }}</span>
+    {% endif %}
     <p>
         {{ card.description }}
     </p>
