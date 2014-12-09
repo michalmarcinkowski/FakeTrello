@@ -8,7 +8,7 @@ $('#popup-close-event,a.btn.btn-danger.btn-lg').click(function(){
 	$(this).closest('.board').find('.pop-up').removeClass('active');
 	return false;
 });
-$('.board-delete-event').click(function(){
+$('div.boards').on('click','.board-delete-event',function(){
 	deleteBoard($(this).closest('a.board').attr('id').substr(2));
 	return false;
 });
@@ -18,7 +18,7 @@ $('#new-board-event').click(function(){
 });
 
 
-$('span.star').click(function(){
+$('div.boards').on('click','span.star',function(){
 	window.location = $(this).attr('data-href');
 	return false;
 });
@@ -45,9 +45,10 @@ function deleteBoard($id){
 
 function addBoard($name){
 	$ajax['data'] = {name:$name};
+	$ajax['type'] = 'POST';
 	$ajax['url'] = 'boards/new/json';
 	$ajax['success'] = function(data){
-		$('.container>.boards').append('<a class="board" id="id'+data.id+'" href="/app_dev.php/boards/'+data.id+'"><h2 style="float: left;">'+data.name+'</h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="glyphicon glyphicon-trash"></i> <span>Delete</span></button></div></a>');
+		$('.container>.boards').append('<a class="board" id="id'+data.id+'" href="/app_dev.php/boards/'+data.id+'"><h2 style="float: left;">'+data.name+'<span class="icon-star-empty star" data-href="/app_dev.php/boards/'+data.id+'/star"></span></h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="icon-trash"></i> <span>Delete</span></button></div></a>');
 		$('#app_board_name').val('');
 	};
 
