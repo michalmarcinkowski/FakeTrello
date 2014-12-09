@@ -28,8 +28,21 @@ a.board:hover {
     transition: background 300ms ease;
 }
 .board h2{
-	font-size:22px;	
+	font-size:22px;
 }
 .board-delete-event{
 	margin:15px 15px 0 0;
+}
+
+.star{
+    transform:scale(1.4);
+    position: relative;
+    top: 4px;
+    left:2px;
+}
+.icon-star:hover{
+    background-position: -144px 0;
+}
+.icon-star-empty:hover{
+    background-position: -120px 0;
 }

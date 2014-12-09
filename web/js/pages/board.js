@@ -17,6 +17,12 @@ $('#new-board-event').click(function(){
 	addBoard($('#app_board_name').val());
 });
 
+
+$('span.star').click(function(){
+	window.location = $(this).attr('data-href');
+	return false;
+});
+
 $ajax = {type: "POST",dataType: "json",cache: false};
 $ajax['error'] = function(xhr){
 		$txt = $.parseJSON(xhr.responseText);
