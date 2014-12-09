@@ -1,10 +1,10 @@
 
  $( "body>div.container>div.board-lists" ).sortable();
- 
+
   $( "div.board-lists>a span.card-list" ).sortable({
 connectWith: "div.board-lists>a span.card-list",
 }).disableSelection();
- 
+
 $('#boardlist-add-event').click(function(){
 	$(this).find('.pop-up').addClass('active');
 });
@@ -14,8 +14,14 @@ $('#popup-close-event,a.btn.btn-danger.btn-lg').click(function(){
 });
 
 // BOARD-LIST DELETE
-$('.delete-list-event').click(function(){
+$('.board-lists').on('click','.delete-list-event',function(){
 	deleteBoard($(this).closest('a.list').attr('id').substr(2));
+	return false;
+});
+
+// BOARD-LIST UPDATE
+$('.board-lists').on('click','.edit-list-event,.list-element-name .icon-edit',function(){
+	window.location = $(this).attr('data-href');
 	return false;
 });
 
@@ -26,16 +32,16 @@ $('#new-board-list-event').click(function(){
 
 
 // CARD ACTIONS
-$('span.show-card-add-event').on('click', function(){
+$('.board-lists').on('click','span.show-card-add-event', function(){
 	$(this).closest('span.show-card-add-event').addClass('active');
 	$(this).closest('span.show-card-add-event').find('input').focus();
 });
 $buffer = false;
-$('span.show-card-add-event input').on('focusout keyup', function(e){
+$('.board-lists').on('focusout keyup','span.show-card-add-event input', function(e){
 	if(!$buffer){
 		$buffer = true;
 		if(e.which==13){
-			$(this).parent().parent().find('span.card-list').append('<span class="list-element"><span class="list-element-name">'+$(this).val()+'</span></span>');
+			addCard($(this).val(),$(this).parent().parent().attr('id').replace(/\D/g,''));
 			$(this).val('');
 		}
 		if(e.which==13 || e.type=='focusout')
@@ -53,26 +59,37 @@ $ajax['error'] = function(xhr){
 	$('body>div.container>div.alert:first-child').show('slow');
 };
 
-function deleteBoard($id){	
+function deleteBoard($id){
 	$ajax['data'] = {id:$id};
 	$ajax['type'] = 'DELETE';
 	$ajax['url'] = window.location.pathname+'/board-list/delete/json';
 	$ajax['success'] = function(data){
 		$('a#id'+$id).hide('slow');
 	};
-	
+
 	$.ajax($ajax);
-	
+
 }
 
 function addBoard($name){
 	$ajax['data'] = {name:$name};
+	$ajax['type'] = 'POST';
 	$ajax['url'] = window.location.pathname+'/board-list/new/json';
 	$ajax['success'] = function(data){
-		$('.container>.board-lists').append('<a class="list" id="id'+data.id+'"><h2 style="float: left;">'+data.name+'<span>+<span><span class="edit-list-event">Edit list</span><span class="delete-list-event">Delete list</span></span></span></h2><span class="card-list"></span><span class="show-card-add-event">Add a card...<input placeholder="The card content"></span></a>');
+		$('.container>.board-lists').append('<a class="list" id="id'+data.id+'"><h2 style="float: left;">'+data.name+'<span>+<span><span data-href="'+window.location.pathname+'/board-list/'+data.id+'/edit" class="edit-list-event">Edit list</span><span class="delete-list-event">Delete list</span></span></span></h2><span class="card-list"></span><span class="show-card-add-event">Add a card...<input placeholder="The card content"></span></a>');
 		$('#app_board_name').val('');
 	};
-	
+
 	$.ajax($ajax);
 }
 
+function addCard($name,$list_id){
+	$ajax['data'] = {name:$name};
+	$ajax['type'] = 'POST';
+	$ajax['url'] = window.location.pathname+'/board-list/'+$list_id+'/card/new/json';
+	$ajax['success'] = function(data){
+		$('a#id'+$list_id).find('span.card-list').append('<span id="card'+data.id+'" class="list-element"><span class="list-element-name">'+data.name+'<span data-href="'+window.location.pathname+'/board-list/'+$list_id+'/card/'+data.id+'/edit'+'" class="icon-edit"></span></span></span>');
+	};
+
+	$.ajax($ajax);
+}

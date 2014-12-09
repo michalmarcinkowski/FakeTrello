@@ -25,7 +25,7 @@
                     {{ list.name }}
                     <span>+
 		      			<span>
-		      				<span class="edit-list-event">Edit list</span>
+		      				<span data-href="{{ path('app_board_list_update', {'boardId': board.id, 'id': list.id}) }}" class="edit-list-event">Edit list</span>
 		      				<span class="delete-list-event">Delete list</span>
 		      			</span>
 		      		</span>

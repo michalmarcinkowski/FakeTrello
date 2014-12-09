@@ -1,5 +1,18 @@
 <span
         {#href="{{ path('app_card_show', { 'boardId': card.boardList.board.id, 'boardListId': card.boardList.id, 'id': card.id}) }}" #}
-        class="list-element">
-    <span class="list-element-name">{{ card.name }}</span>
+        class="list-element" id="card{{card.id}}">
+    <span class="list-element-name">
+    	{{ card.name }}
+    	<span data-href="{{ path('app_card_update', { 'boardId': card.boardList.board.id, 'boardListId': card.boardList.id, 'id': card.id}) }}" class="icon-edit"></span>
+    </span>
+    {% if card.description %}
+	    <span class="list-element-desc">
+	    	{{ card.description }}
+	    </span>
+    {% endif %}
+    {% if card.deadline %}
+	    <span class="list-element-deadline">
+	    	<b>Deadline: </b>{{ card.deadline|date('Y-m-d') }}
+	    </span>
+    {% endif %}
 </span>
