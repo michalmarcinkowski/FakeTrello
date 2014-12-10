@@ -36,8 +36,8 @@ app_card_update:
         _controller: app.controller.card:updateAction
         _sylius:
             redirect:
-                route: app_card_update
-                parameters: { boardId: $boardId, boardListId: $boardListId, id: $id }
+                route: app_board_show
+                parameters: { boardId: $boardId }
 
 app_card_show:
     pattern: /{id}

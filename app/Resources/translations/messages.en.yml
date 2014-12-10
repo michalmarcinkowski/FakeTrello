@@ -2,3 +2,4 @@ sylius:
     create: Create
     delete: Delete
     cancel: Cancel
+    save_changes: Save

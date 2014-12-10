@@ -15,8 +15,8 @@ app_board_list_update:
         _controller: app.controller.boardList:updateAction
         _sylius:
             redirect:
-                route: app_board_list_update
-                parameters: { boardId: $boardId, id: $id }
+                route: app_board_show
+                parameters: { boardId: $boardId }
 
 app_board_list_create:
     pattern: /new
