@@ -57,3 +57,9 @@ app_board_delete_json:
 app_board_list:
     resource: @AppBundle/Resources/config/routing/board_list.yml
     prefix: /{boardId}/board-list
+
+app_card_move:
+    pattern: /{id}/{cardId}/{targetBoardListId}
+    methods: [PUT, PATCH, GET]
+    defaults:
+        _controller: app.controller.card:moveAction

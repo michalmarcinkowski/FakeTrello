@@ -1,8 +1,11 @@
 
  $( "body>div.container>div.board-lists" ).sortable();
 
-  $( "div.board-lists>a span.card-list" ).sortable({
-connectWith: "div.board-lists>a span.card-list",
+$( "div.board-lists>a span.card-list" ).sortable({
+	connectWith: "div.board-lists>a span.card-list",
+	update: function(ev, ui){
+		moveCard(ui.item.attr('id').replace(/\D/g,''),ui.item.parents('a').attr('id').replace(/\D/g,''));
+	},
 }).disableSelection();
 
 $('#boardlist-add-event').click(function(){
@@ -89,6 +92,16 @@ function addCard($name,$list_id){
 	$ajax['url'] = window.location.pathname+'/board-list/'+$list_id+'/card/new/json';
 	$ajax['success'] = function(data){
 		$('a#id'+$list_id).find('span.card-list').append('<span id="card'+data.id+'" class="list-element"><span class="list-element-name">'+data.name+'<span data-href="'+window.location.pathname+'/board-list/'+$list_id+'/card/'+data.id+'/edit'+'" class="icon-edit"></span></span></span>');
+	};
+
+	$.ajax($ajax);
+}
+
+function moveCard($id,$targetId){
+	$ajax['type'] = 'GET';
+	$ajax['url'] = window.location.pathname+'/'+$id+'/'+$targetId;
+	$ajax['success'] = function(data){
+		// on fail handler?
 	};
 
 	$.ajax($ajax);

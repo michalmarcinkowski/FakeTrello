@@ -7,9 +7,3 @@ homepage:
 app_board:
     resource: @AppBundle/Resources/config/routing/board.yml
     prefix: /boards
-
-app_card_move:
-    pattern: /{cardId}/{targetBoardListId}
-    methods: [PUT, PATCH]
-    defaults:
-        _controller: app.controller.card:moveAction
