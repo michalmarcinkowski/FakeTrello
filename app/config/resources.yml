@@ -20,7 +20,7 @@ sylius_resource:
                 controller: AppBundle\Controller\CardController
         app.organization:
             driver: doctrine/orm
-            templates: :Organization
+            templates: :Admin\Organization
             classes:
                 model: AppBundle\Entity\Organization
                 controller: AppBundle\Controller\OrganizationController

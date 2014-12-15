@@ -3,3 +3,4 @@ sylius:
     delete: Delete
     cancel: Cancel
     save_changes: Save
+    edit: Edit

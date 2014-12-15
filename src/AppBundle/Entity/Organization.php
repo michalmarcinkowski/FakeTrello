@@ -25,7 +25,8 @@ class Organization
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="organizations")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="organizations")
+     * @ORM\JoinTable(name="organization_members")
      * @var Collection
      **/
     private $members;

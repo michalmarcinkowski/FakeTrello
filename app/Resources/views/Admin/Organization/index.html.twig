@@ -1,0 +1,47 @@
+{% extends "layout.html.twig" %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'SyliusResourceBundle:Macros:actions.html.twig' import create %}
+
+{% block body %}
+    <div class="page-header">
+        <div class="actions-menu pull-right">
+            {{ buttons.create(path('app_organization_create'), 'Add Organization') }}
+        </div>
+        <h1><i class="glyphicon glyphicon-cog"></i> {{ 'Organizations' }}</h1>
+    </div>
+
+    {% if organizations|length > 0 %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ sylius_resource_sort('name', 'Name') }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for organization in organizations %}
+                <tr id="{{ organization.id }}">
+                    <td>
+                        <strong>{{ organization.name }}</strong>
+                    </td>
+                    <td>
+                        <div class="pull-right">
+                            {{ buttons.edit(path('app_organization_update', {'id': organization.id})) }}
+                        </div>
+                        <div class="pull-right">
+                            {{ buttons.delete(path('app_organization_delete', {'id': organization.id})) }}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">
+            <h4 class="alert-heading">{{ 'Info' }}</h4>
+            {{ 'You have no organizations configured'|trans }}
+        </div>
+    {% endif %}
+
+{% endblock %}

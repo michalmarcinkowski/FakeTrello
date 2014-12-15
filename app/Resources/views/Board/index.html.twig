@@ -25,7 +25,7 @@
     {% set boards = user.boards %}
     {% include ':Board:_boardSection.html.twig' %}
 
-    {# display all organization boards #}
+    {# display all organization's boards #}
     {% for organization in user.organizations %}
         {% set board_section_name = organization.name %}
         {% set boards = organization.boards %}

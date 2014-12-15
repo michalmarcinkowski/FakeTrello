@@ -20,9 +20,9 @@ class User extends BaseUser
      */
     protected $id;
 
+
     /**
-     * @ORM\ManyToMany(targetEntity="Organization", inversedBy="members")
-     * @ORM\JoinTable(name="organization_members")
+     * @ORM\ManyToMany(targetEntity="Organization", mappedBy="members")
      * @var Collection
      **/
     private $organizations;

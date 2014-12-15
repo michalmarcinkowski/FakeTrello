@@ -11,3 +11,7 @@ services:
         class: AppBundle\Form\Type\CardType
         tags:
             - { name: form.type, alias: app_card }
+    app.form.type.organization:
+        class: AppBundle\Form\Type\OrganizationType
+        tags:
+            - { name: form.type, alias: app_organization }
