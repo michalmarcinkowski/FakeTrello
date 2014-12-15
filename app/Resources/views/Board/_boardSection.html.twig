@@ -1,0 +1,25 @@
+<div class="boards-section">
+    <h3>{{ board_section_name }}</h3>
+    <div class="boards">
+        {% for board in boards %}
+            {% include ':Board:_board.html.twig' %}
+        {% endfor %}
+    </div>
+    <div class="board new" id="board-add-event">
+        <h2 style="float: left;">Create new board...</h2>
+        <div class="pop-up">
+            {{ form_widget(form.name, {'attr': {'placeholder': 'Name'} }) }}
+            <div>
+                <button class="btn btn-primary btn-lg" id="new-board-event"><i class="icon-ok"></i> Create</button>
+                <a class="btn btn-danger btn-lg" href=""><i class="icon-remove"></i> Cancel</a>
+            </div>
+            {#<h3>Create Board<span id="popup-close-event">x</span></h3>#}
+            {#<input placeholder="Name" type="text" id="new-board-name" class="input-lg" required="required" name="app_board[name]" id="app_board_name">#}
+            {#<div>#}
+            {#<button class="btn btn-primary btn-lg" id="new-board-event"><i class="icon-ok"></i> Create</button>#}
+            {#<a class="btn btn-danger btn-lg" href=""><i class="icon-remove"></i> Cancel</a>#}
+            {#</div>#}
+            {#</form>#}
+        </div>
+    </div>
+</div>

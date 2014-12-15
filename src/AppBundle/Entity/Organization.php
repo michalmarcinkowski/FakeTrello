@@ -25,7 +25,7 @@ class Organization
     private $name;
 
     /**
-     * @ManyToMany(targetEntity="User", mappedBy="organizations")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="organizations")
      * @var Collection
      **/
     private $members;

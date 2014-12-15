@@ -20,47 +20,16 @@
         <h1><i class="glyphicon glyphicon-cog"></i> {{ 'Boards' }}</h1>
     </div>
 
-	<div class="boards">
-	    {% for board in boards %}
-		  <a class="board" id="id{{board.id}}" href="{{ path('app_board_show', { 'boardId': board.id}) }}">
-		      <h2 style="float: left;">{{ board.name }}
-	              {# too much logic in a template, should be replaced by twig helper, but we don't care in this project :) #}
-	              {# check if board is already starred #}
-	              {% set starred = false %}
-	              {% for starredBoard in app.user.starredBoards if starredBoard.id == board.id %}
-	                  {% set starred = true %}
-	              {% endfor %}
-	              {# display appriopriate link #}
-	              {% if starred == true %}
-	                  <span class="icon-star star" data-href="{{ path('app_board_unstar', {'id': board.id}) }}"></span>
-	              {% else %}
-	                  <span class="icon-star-empty star" data-href="{{ path('app_board_star', {'id': board.id}) }}"></span>
-	              {% endif %}
-              </h2>
-		      <div class="pull-right">
-		          <button type="submit" class="btn btn-danger btn-confirm board-delete-event">
-		  			<i class="icon-trash"></i> <span>Delete</span>
-	    			</button>
-		      </div>
-		  </a>
-	    {% endfor %}
-	</div>
-	<div class="board new" id="board-add-event">
-		  <h2 style="float: left;">Create new board...</h2>
-		  <div class="pop-up">
-                  {{ form_widget(form.name, {'attr': {'placeholder': 'Name'} }) }}
-                  <div>
-                      <button class="btn btn-primary btn-lg" id="new-board-event"><i class="icon-ok"></i> Create</button>
-                      <a class="btn btn-danger btn-lg" href=""><i class="icon-remove"></i> Cancel</a>
-                  </div>
-		  	{#<h3>Create Board<span id="popup-close-event">x</span></h3>#}
-					{#<input placeholder="Name" type="text" id="new-board-name" class="input-lg" required="required" name="app_board[name]" id="app_board_name">#}
-					{#<div>#}
-					    {#<button class="btn btn-primary btn-lg" id="new-board-event"><i class="icon-ok"></i> Create</button>#}
-					    {#<a class="btn btn-danger btn-lg" href=""><i class="icon-remove"></i> Cancel</a>#}
-					{#</div>#}
-				{#</form>#}
-		  </div>
-		</div>
+    {# display all user boards #}
+    {% set board_section_name = 'My boards' %}
+    {% set boards = user.boards %}
+    {% include ':Board:_boardSection.html.twig' %}
+
+    {# display all organization boards #}
+    {% for organization in user.organizations %}
+        {% set board_section_name = organization.name %}
+        {% set boards = organization.boards %}
+        {% include ':Board:_boardSection.html.twig' %}
+    {% endfor %}
 
 {% endblock %}
