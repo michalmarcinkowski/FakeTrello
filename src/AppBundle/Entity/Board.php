@@ -86,7 +86,7 @@ class Board
     }
 
     /**
-     * @return mixed
+     * @return Organization
      */
     public function getOrganization()
     {

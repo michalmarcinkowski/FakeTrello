@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Organization;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Board;
@@ -17,7 +18,7 @@ class BoardListController extends ResourceController
         $boardRepository = $this->get('app.repository.board');
         /** @var Board $board */
         $board = $boardRepository->find($boardId);
-        if ($board->getUser()->getId() !== $this->getUser()->getId()) {
+        if (!$this->canDisplayBoard($board)) {
             throw new AccessDeniedException("Your not allowed to display this board!");
         }
 
@@ -32,6 +33,29 @@ class BoardListController extends ResourceController
         ;
 
         return $this->handleView($view);
+    }
+
+    private function canDisplayBoard(Board $board)
+    {
+        $user = $board->getUser();
+        if (!empty($user)) {
+            return ($this->getUser()->getId() === $user->getId());
+        }
+        $organization = $board->getOrganization();
+        if (!empty($organization)) {
+            return ($this->isOrganizationMember($organization));
+        }
+        return false;
+    }
+
+    private function isOrganizationMember(Organization $organization)
+    {
+        foreach ($this->getUser()->getOrganizations() as $userOrganization) {
+            if ($organization->getId() === $userOrganization->getId()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
