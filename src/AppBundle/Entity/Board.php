@@ -31,6 +31,12 @@ class Board
     private $user;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Organization", inversedBy="boards")
+     * @ORM\JoinColumn(name="organization_id", referencedColumnName="id")
+     **/
+    private $organization;
+
+    /**
      * @ORM\OneToMany(targetEntity="BoardList", mappedBy="board", cascade="remove")
      * @var Collection/BoardList[]
      **/
@@ -66,6 +72,25 @@ class Board
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @param Organization $organization
+     * @return $this
+     */
+    public function setOrganization(Organization $organization)
+    {
+        $this->organization = $organization;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
     }
 
     /**

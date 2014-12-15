@@ -32,7 +32,7 @@ class Organization
     private $members;
 
     /**
-     * @ORM\OneToMany(targetEntity="Board", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Board", mappedBy="organization")
      **/
     private $boards;
 
