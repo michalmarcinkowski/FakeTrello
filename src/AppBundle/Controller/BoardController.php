@@ -19,8 +19,8 @@ class BoardController extends ResourceController
             ->view()
             ->setTemplate($this->config->getTemplate('index.html'))
             ->setData(array(
-                $this->config->getPluralResourceName() => $currentUser->getBoards(),
-                'form'                                 => $form->createView(),
+                'user' => $currentUser,
+                'form' => $form->createView(),
             ))
         ;
 

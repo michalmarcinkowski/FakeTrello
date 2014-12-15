@@ -1,0 +1,37 @@
+app_organization_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: app.controller.organization:indexAction
+
+app_organization_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.organization:createAction
+        _sylius:
+            redirect: app_organization_index
+
+app_organization_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: app.controller.organization:deleteAction
+        _sylius:
+            redirect: app_organization_index
+
+app_organization_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: app.controller.organization:updateAction
+        _sylius:
+            redirect: app_organization_index
+
+app_organization_board_create:
+    pattern: /{id}/boards/new
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.organization:addBoardAction
+        _sylius:
+            redirect: homepage
