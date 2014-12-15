@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Board;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class BoardListController extends ResourceController
 {
@@ -16,6 +17,9 @@ class BoardListController extends ResourceController
         $boardRepository = $this->get('app.repository.board');
         /** @var Board $board */
         $board = $boardRepository->find($boardId);
+        if ($board->getUser()->getId() !== $this->getUser()->getId()) {
+            throw new AccessDeniedException("Your not allowed to display this board!");
+        }
 
         $view = $this
             ->view()

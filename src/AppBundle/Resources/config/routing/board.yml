@@ -63,3 +63,7 @@ app_card_move:
     methods: [PUT, PATCH, GET]
     defaults:
         _controller: app.controller.card:moveAction
+    requirements:
+        id:  \d+
+        cardId:  \d+
+        targetBoardListId:  \d+
