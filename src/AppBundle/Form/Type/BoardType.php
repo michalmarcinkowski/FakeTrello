@@ -12,6 +12,10 @@ class BoardType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('organization', 'entity', array(
+                'class' => 'AppBundle\Entity\Organization',
+                'required' => false,
+            ))
         ;
     }
 

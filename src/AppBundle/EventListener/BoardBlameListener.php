@@ -18,7 +18,9 @@ class BoardBlameListener
     {
         $user = $this->securityContext->getToken()->getUser();
         $board = $event->getSubject();
-
-        $board->setUser($user);
+        $organization = $board->getOrganization();
+        if (empty($organization)) {
+            $board->setUser($user);
+        }
     }
 }
