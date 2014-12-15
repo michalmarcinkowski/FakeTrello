@@ -21,6 +21,13 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Organization", inversedBy="members")
+     * @ORM\JoinTable(name="organization_members")
+     * @var Collection
+     **/
+    private $organizations;
+
+    /**
      * @ORM\OneToMany(targetEntity="Board", mappedBy="user")
      **/
     private $boards;
@@ -42,6 +49,50 @@ class User extends BaseUser
         parent::__construct();
         $this->boards = new ArrayCollection();
         $this->starredBoards = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getOrganizations()
+    {
+        return $this->organizations;
+    }
+
+    /**
+     * @param  Organization $organization
+     * @return $this
+     */
+    public function addOrganization(Organization $organization)
+    {
+        if ($this->hasOrganization($organization)) {
+            return $this;
+        }
+        $this->organizations->add($organization);
+
+        return $this;
+    }
+
+    /**
+     * @param  Organization $organization
+     * @return $this
+     */
+    public function removeOrganization(Organization $organization)
+    {
+        if ($this->hasOrganization($organization)) {
+            $this->organizations->removeElement($organization);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param  Organization $organization
+     * @return bool
+     */
+    public function hasOrganization(Organization $organization)
+    {
+        return $this->organizations->contains($organization);
     }
 
     /**
