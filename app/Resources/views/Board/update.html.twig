@@ -2,15 +2,17 @@
 
 {% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
 {% from 'SyliusResourceBundle:Macros:actions.html.twig' import update %}
+{% block javascripts %}
+  {{ parent() }}
+    <script>
+      $('.icon-save').addClass('icon-ok');
+    </script>
+{% endblock %}
 
 {% block body %}
-    <div class="page-header">
-        <h1><i class="glyphicon glyphicon-plus-sign"></i> {{ 'Edit Board' }}</h1>
-    </div>
-
-    {{ form_errors(form) }}
-
-    <form action="{{ path('app_board_update', {'id': board.id}) }}" method="post" class="form-horizontal" >
+    <form action="{{ path('app_board_update', {'id': board.id}) }}" method="post" class="form-horizontal app_board_update" >
+        <h3>{{ 'Edit Board' }}</h3>
+        {{ form_errors(form) }}
         <input type="hidden" name="_method" value="PUT">
         {% include ':Board:_form.html.twig' %}
         {{ update() }}

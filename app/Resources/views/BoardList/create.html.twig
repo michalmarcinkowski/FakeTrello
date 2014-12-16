@@ -4,13 +4,9 @@
 {% from 'SyliusResourceBundle:Macros:actions.html.twig' import create %}
 
 {% block body %}
-    <div class="page-header">
-        <h1><i class="glyphicon glyphicon-plus-sign"></i> {{ 'Add new list' }}</h1>
-    </div>
-
-    {{ form_errors(form) }}
-
-    <form action="{{ path('app_board_list_create', {'boardId': boardId}) }}" method="post" class="form-horizontal" >
+    <form action="{{ path('app_board_list_create', {'boardId': boardId}) }}" method="post" class="form-horizontal app_board_list_create" >
+        <h3>{{ 'Add new list' }}</h3>
+        {{ form_errors(form) }}
         {% include ':BoardList:_form.html.twig' %}
         {{ create() }}
     </form>

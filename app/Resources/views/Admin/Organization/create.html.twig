@@ -4,13 +4,9 @@
 {% from 'SyliusResourceBundle:Macros:actions.html.twig' import create %}
 
 {% block body %}
-    <div class="page-header">
-        <h1><i class="glyphicon glyphicon-plus-sign"></i> {{ 'Add new organization' }}</h1>
-    </div>
-
-    {{ form_errors(form) }}
-
-    <form action="{{ path('app_organization_create') }}" method="post" class="form-horizontal" >
+    <form action="{{ path('app_organization_create') }}" method="post" class="form-horizontal app_organization_create" >
+        <h3>{{ 'Add new organization' }}</h3>
+        {{ form_errors(form) }}
         {% include ':Admin/Organization:_form.html.twig' %}
         {{ create() }}
     </form>

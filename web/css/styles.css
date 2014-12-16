@@ -12,7 +12,9 @@ body.background-yellow {
 body.background-green {
     background: rgb(36, 208, 64);
 }
-.form-signin, .fos_user_registration_register, div.container.confirmed{
+.form-signin, .fos_user_registration_register, div.container.confirmed, form.app_board_create,
+ form.app_board_update, form.app_board_list_create, form.app_board_list_update,
+ form.app_card_update, form.app_card_create, form.app_organization_update, form.app_organization_create{
     max-width: 300px;
     padding: 19px 29px 29px;
     margin: 0 auto 20px;
@@ -53,6 +55,7 @@ body.background-green {
 
 ul.nav.pull-right li>a{
 	display:inline-block;
+    transition:all 600ms ease;
 }
 
 .pop-up{
@@ -98,4 +101,21 @@ ul.nav.pull-right li>a{
 
 body>.container {
     padding: 20px;
+}
+form.app_board_create .form-actions, form.app_board_update .form-actions,
+form.app_board_list_create .form-actions, form.app_board_list_update .form-actions,
+form.app_card_update .form-actions, form.app_card_create .form-actions,
+form.app_organization_create .form-actions, form.app_organization_update .form-actions{
+    padding-left:10px;
+}
+
+table.organizations td form{
+    margin-bottom:0;
+}
+table.organizations th{
+    border-bottom:2px dashed #a0a0a0;
+    padding-bottom:0;
+}
+table.organizations tr:first-of-type td{
+    padding-top:15px;
 }

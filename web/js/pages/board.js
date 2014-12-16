@@ -58,7 +58,7 @@ function addBoard($name,$organization_id){
 	$ajax['type'] = 'POST';
 	$ajax['url'] = 'boards/new/json';
 	$ajax['success'] = function(data){
-		$('#section'+$organization_id+'>.boards').append('<a class="board" id="id'+data.id+'" href="/app_dev.php/boards/'+data.id+'"><h2 style="float: left;">'+data.name+'<span class="icon-star-empty star" data-href="/app_dev.php/boards/'+data.id+'/star"></span></h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="icon-trash"></i> <span>Delete</span></button></div></a>');
+		$('#section'+$organization_id+'>.boards').append('<a class="board" id="id'+data.id+'" href="boards/'+data.id+'"><h2 style="float: left;">'+data.name+'<span class="icon-star-empty star icon" data-href="boards/'+data.id+'/star"></span><span class="icon-cog icon" data-href="boards/'+data.id+'/edit"></span><span class="icon-trash board-delete-event icon"></span><span class="line"></span></h2></a>');
 		//$('#app_board_name').val('');
 	};
 
