@@ -19,3 +19,7 @@ services:
         class: AppBundle\Form\Type\LabelType
         tags:
             - { name: form.type, alias: app_label }
+    app.form.type.comment:
+        class: AppBundle\Form\Type\CommentType
+        tags:
+            - { name: form.type, alias: app_comment }

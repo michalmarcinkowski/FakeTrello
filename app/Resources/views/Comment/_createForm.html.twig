@@ -1,0 +1,8 @@
+{% from 'SyliusResourceBundle:Macros:actions.html.twig' import create %}
+
+<form action="{{ path('app_card_comment_create', {'boardId': card.boardList.board.id, 'boardListId': card.boardList.id, 'id': card.id}) }}" method="post" class="form-horizontal app_comment_create" >
+    <h3>{{ 'Add new comment' }}</h3>
+    {{ form_errors(comment_form) }}
+    {% include ':Comment:_form.html.twig' %}
+    {{ create() }}
+</form>

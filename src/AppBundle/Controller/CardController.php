@@ -7,6 +7,7 @@ use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Card;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CardController extends ResourceController
@@ -86,5 +87,28 @@ class CardController extends ResourceController
                 substr($repository->getClassName(), $position + 1),
                 $id)
             );
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function showAction(Request $request)
+    {
+        $commentRepository = $this->get('app.repository.comment');
+        $comment = $commentRepository->createNew();
+        $commentForm = $this->createForm('app_comment', $comment);
+
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('show.html'))
+            ->setData(array(
+                $this->config->getResourceName() => $this->findOr404($request),
+                'comment_form'                           => $commentForm->createView(),
+            ))
+        ;
+
+        return $this->handleView($view);
     }
 }

@@ -29,6 +29,16 @@ app_card_delete:
                 route: app_board_show
                 parameters: { boardId: $boardId }
 
+app_card_comment_create:
+    pattern: /{id}/comment/new
+    methods: [POST]
+    defaults:
+        _controller: app.controller.comment:createAction
+        _sylius:
+            redirect:
+                route: app_card_show
+                parameters: { boardId: $boardId, boardListId: $boardListId, id: $id }
+
 app_card_update:
     pattern: /{id}/edit
     methods: [GET, PUT, POST]

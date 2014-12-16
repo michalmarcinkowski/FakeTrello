@@ -6,3 +6,10 @@ services:
         tags:
             - { name: kernel.event_listener, event: app.board.pre_create, method: blameBoard }
             - { name: kernel.event_listener, event: app.board.pre_update, method: blameBoard }
+    app.listener.comment_blame:
+        class: AppBundle\EventListener\CommentBlameListener
+        arguments:
+            - @security.context
+        tags:
+            - { name: kernel.event_listener, event: app.comment.pre_create, method: blameComment }
+            - { name: kernel.event_listener, event: app.comment.pre_update, method: blameComment }

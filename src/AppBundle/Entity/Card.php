@@ -48,9 +48,16 @@ class Card
      **/
     private $labels;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="card")
+     * @var Collection
+     **/
+    private $comments;
+
     public function __construct()
     {
         $this->labels = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -173,5 +180,49 @@ class Card
     public function hasLabel(Label $label)
     {
         return $this->labels->contains($label);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param  Comment $comment
+     * @return $this
+     */
+    public function addComment(Comment $comment)
+    {
+        if ($this->hasComment($comment)) {
+            return $this;
+        }
+        $this->comments->add($comment);
+
+        return $this;
+    }
+
+    /**
+     * @param  Comment $comment
+     * @return $this
+     */
+    public function removeComment(Comment $comment)
+    {
+        if ($this->hasComment($comment)) {
+            $this->comments->removeElement($comment);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param  Comment $comment
+     * @return bool
+     */
+    public function hasComment(Comment $comment)
+    {
+        return $this->comments->contains($comment);
     }
 }
