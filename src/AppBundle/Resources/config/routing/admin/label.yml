@@ -1,0 +1,29 @@
+app_label_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: app.controller.label:indexAction
+
+app_label_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.label:createAction
+        _sylius:
+            redirect: app_label_index
+
+app_label_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: app.controller.label:deleteAction
+        _sylius:
+            redirect: app_label_index
+
+app_label_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: app.controller.label:updateAction
+        _sylius:
+            redirect: app_label_index

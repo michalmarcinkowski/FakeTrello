@@ -18,7 +18,6 @@ class LabelType extends AbstractType
                     'yellow'  => 'Yellow',
                     'green'   => 'Green'
                 ),
-                'required' => false,
             ))
         ;
     }
