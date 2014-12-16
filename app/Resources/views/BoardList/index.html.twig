@@ -11,6 +11,8 @@
     <script src="{{ asset('js/pages/board-list.js') }}"></script>
 {% endblock %}
 
+{% block containerClasses %}background-{{ board.color }}{% endblock %}
+
 {% block body %}
     <div class="page-header">
         <div class="actions-menu pull-right">
@@ -24,17 +26,17 @@
                 <h2 style="float: left;">
                     {{ list.name }}
                     <span>+
-		      			<span>
-		      				<span data-href="{{ path('app_board_list_update', {'boardId': board.id, 'id': list.id}) }}" class="edit-list-event">Edit list</span>
-		      				<span class="delete-list-event">Delete list</span>
-		      			</span>
-		      		</span>
+                        <span>
+                            <span data-href="{{ path('app_board_list_update', {'boardId': board.id, 'id': list.id}) }}" class="edit-list-event">Edit list</span>
+                            <span class="delete-list-event">Delete list</span>
+                        </span>
+                    </span>
                 </h2>
-		      <span class="card-list">
+              <span class="card-list">
                   {% for card in list.cards %}
                       {% include ':Card:_shortDetails.html.twig' %}
                   {% endfor %}
-		      </span>
+              </span>
                 <span class="show-card-add-event">Add a card...<input placeholder="The card content"></span>
                 {#<a href="{{ path('app_card_create', {'boardId': board.id, 'boardListId': list.id}) }}">NEW CARD</a>#}
             </a>
