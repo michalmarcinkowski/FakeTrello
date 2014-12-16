@@ -42,6 +42,11 @@ class Board
      **/
     private $lists;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $color;
+
     public function __construct()
     {
         $this->lists = new ArrayCollection();
@@ -154,6 +159,25 @@ class Board
     public function getLists()
     {
         return $this->lists;
+    }
+
+    /**
+     * @param string $color
+     * @return $this
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
     }
 
     public function __toString()
