@@ -24,3 +24,8 @@ sylius_resource:
             classes:
                 model: AppBundle\Entity\Organization
                 controller: AppBundle\Controller\OrganizationController
+        app.label:
+            driver: doctrine/orm
+            templates: :Admin\Label
+            classes:
+                model: AppBundle\Entity\Label

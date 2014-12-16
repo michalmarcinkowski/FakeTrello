@@ -1,0 +1,19 @@
+{% extends "layout.html.twig" %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'SyliusResourceBundle:Macros:actions.html.twig' import update %}
+{% block javascripts %}
+  {{ parent() }}
+    <script>
+      $('.icon-save').addClass('icon-ok');
+    </script>
+{% endblock %}
+{% block body %}
+    <form action="{{ path('app_label_update', {'id': label.id}) }}" method="post" class="form-horizontal app_label_update" novalidate>
+        <h3>{{ 'Edit Label' }}</h3>
+        {{ form_errors(form) }}
+        <input type="hidden" name="_method" value="PUT">
+        {% include ':Admin/Label:_form.html.twig' %}
+        {{ update() }}
+    </form>
+{% endblock %}

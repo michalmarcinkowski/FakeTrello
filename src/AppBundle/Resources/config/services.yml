@@ -15,3 +15,7 @@ services:
         class: AppBundle\Form\Type\OrganizationType
         tags:
             - { name: form.type, alias: app_organization }
+    app.form.type.label:
+        class: AppBundle\Form\Type\LabelType
+        tags:
+            - { name: form.type, alias: app_label }

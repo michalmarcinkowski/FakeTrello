@@ -1,0 +1,13 @@
+{% extends "layout.html.twig" %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'SyliusResourceBundle:Macros:actions.html.twig' import create %}
+
+{% block body %}
+    <form action="{{ path('app_label_create') }}" method="post" class="form-horizontal app_label_create" >
+        <h3>{{ 'Add new label' }}</h3>
+        {{ form_errors(form) }}
+        {% include ':Admin/Label:_form.html.twig' %}
+        {{ create() }}
+    </form>
+{% endblock %}

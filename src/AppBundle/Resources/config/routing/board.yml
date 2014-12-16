@@ -52,7 +52,9 @@ app_board_update:
     defaults:
         _controller: app.controller.board:updateAction
         _sylius:
-            redirect: app_board_update
+            redirect:
+                route: app_board_show
+                parameters: { boardId: $id }
 
 app_board_create_json:
     pattern: /new/json

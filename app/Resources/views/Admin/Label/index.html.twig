@@ -1,0 +1,51 @@
+{% extends "layout.html.twig" %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'SyliusResourceBundle:Macros:actions.html.twig' import create %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/pages/admin.css') }}" media="screen"/>
+{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <div class="actions-menu pull-right">
+            {{ buttons.create(path('app_label_create'), 'Add Label') }}
+        </div>
+        <h1><i class="glyphicon glyphicon-cog"></i> {{ 'Labels' }}</h1>
+    </div>
+
+    {% if labels|length > 0 %}
+        <table class="table labels">
+            <thead>
+            <tr>
+                <th><h3 style="margin-bottom:0;">{{ sylius_resource_sort('name', 'Name') }}</h3></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for label in labels %}
+                <tr id="{{ label.id }}">
+                    <td>
+                        <strong>{{ label.name }}</strong>
+                    </td>
+                    <td>
+                        <div class="pull-right">
+                            {{ buttons.edit(path('app_label_update', {'id': label.id})) }}
+                        </div>
+                        <div class="pull-right">
+                            {{ buttons.delete(path('app_label_delete', {'id': label.id})) }}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">
+            <h4 class="alert-heading">{{ 'Info' }}</h4>
+            {{ 'You have no labels configured'|trans }}
+        </div>
+    {% endif %}
+
+{% endblock %}
