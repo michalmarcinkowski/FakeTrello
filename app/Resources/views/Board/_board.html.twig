@@ -8,14 +8,12 @@
           {% endfor %}
           {# display appriopriate link #}
           {% if starred == true %}
-              <span class="icon-star star" data-href="{{ path('app_board_unstar', {'id': board.id}) }}"></span>
+              <span class="icon-star star icon" data-href="{{ path('app_board_unstar', {'id': board.id}) }}"></span>
           {% else %}
-              <span class="icon-star-empty star" data-href="{{ path('app_board_star', {'id': board.id}) }}"></span>
+              <span class="icon-star-empty star icon" data-href="{{ path('app_board_star', {'id': board.id}) }}"></span>
           {% endif %}
+          <span class="icon-cog icon" data-href="{{ path('app_board_update', {'id': board.id}) }}"></span>
+          <span class="icon-trash board-delete-event icon"></span>
+
       </h2>
-      <div class="pull-right">
-          <button type="submit" class="btn btn-danger btn-confirm board-delete-event">
-            <i class="icon-trash"></i> <span>Delete</span>
-            </button>
-      </div>
   </a>
