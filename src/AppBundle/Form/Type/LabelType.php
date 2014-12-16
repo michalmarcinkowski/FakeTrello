@@ -6,23 +6,18 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CardType extends AbstractType
+class LabelType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
-            ->add('description', 'textarea', array(
-                'required' => false,
-            ))
-            ->add('deadline', 'date', array(
-                'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
-                'required' => false,
-            ))
-            ->add('labels', 'entity', array(
-                'class' => 'AppBundle\Entity\Label',
-                'multiple' => true,
+            ->add('color', 'choice', array(
+                'choices' => array(
+                    'blue'    => 'Blue',
+                    'yellow'  => 'Yellow',
+                    'green'   => 'Green'
+                ),
                 'required' => false,
             ))
         ;
@@ -32,12 +27,12 @@ class CardType extends AbstractType
     {
         $resolver->setDefaults(array(
             'csrf_protection' => false,
-            'data_class' => 'AppBundle\Entity\Card'
+            'data_class' => 'AppBundle\Entity\Label'
         ));
     }
 
     public function getName()
     {
-        return 'app_card';
+        return 'app_label';
     }
 }

@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,6 +40,18 @@ class Card
      * @ORM\JoinColumn(name="board_list_id", referencedColumnName="id")
      **/
     private $boardList;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Label", inversedBy="cards")
+     * @ORM\JoinTable(name="card_labels")
+     * @var Collection
+     **/
+    private $labels;
+
+    public function __construct()
+    {
+        $this->labels = new ArrayCollection();
+    }
 
     /**
      * @return integer
@@ -115,5 +129,49 @@ class Card
     public function getBoardList()
     {
         return $this->boardList;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * @param  Label $label
+     * @return $this
+     */
+    public function addLabel(Label $label)
+    {
+        if ($this->hasLabel($label)) {
+            return $this;
+        }
+        $this->labels->add($label);
+
+        return $this;
+    }
+
+    /**
+     * @param  Label $label
+     * @return $this
+     */
+    public function removeLabel(Label $label)
+    {
+        if ($this->hasLabel($label)) {
+            $this->labels->removeElement($label);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param  Label $label
+     * @return bool
+     */
+    public function hasLabel(Label $label)
+    {
+        return $this->labels->contains($label);
     }
 }
