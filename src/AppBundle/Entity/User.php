@@ -33,14 +33,10 @@ class User extends BaseUser
     private $boards;
 
     /**
-     * @ORM\OneToMany(targetEntity="Board", mappedBy="starredByUsers")
-     **/
-    /**
-     * @ORM\ManyToMany(targetEntity="Board")
+     * @ORM\ManyToMany(targetEntity="Board", cascade={"persist", "remove"})
      * @ORM\JoinTable(name="users_starredboards",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="starredboard_id", referencedColumnName="id", unique=true)}
-     *      )
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="starredboard_id", referencedColumnName="id", unique=true, onDelete="CASCADE")})
      **/
     private $starredBoards;
 
