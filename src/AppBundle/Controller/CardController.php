@@ -82,7 +82,7 @@ class CardController extends ResourceController
         }
         throw new NotFoundHttpException(
             sprintf(
-                'Requested %s does not exist with id: %d.',
+                "Requested %s with id '%d' does not exist.",
                 substr($repository->getClassName(), $position + 1),
                 $id)
             );

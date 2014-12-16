@@ -4,8 +4,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Organization;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Board;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class BoardListController extends ResourceController
@@ -15,9 +17,8 @@ class BoardListController extends ResourceController
         $resource = $this->createNew();
         $form = $this->getForm($resource);
 
-        $boardRepository = $this->get('app.repository.board');
         /** @var Board $board */
-        $board = $boardRepository->find($boardId);
+        $board = $this->getOr404($this->get('app.repository.board'), $boardId);
         if (!$this->canDisplayBoard($board)) {
             throw new AccessDeniedException("Your not allowed to display this board!");
         }
@@ -100,5 +101,23 @@ class BoardListController extends ResourceController
         ;
 
         return $this->handleView($view);
+    }
+
+    public function getOr404(RepositoryInterface $repository, $id)
+    {
+        $object = $repository->find($id);
+        if (!empty($object)) {
+            return $object;
+        }
+        $position = strrpos($repository->getClassName(), '\\');
+        if (!$position) {
+            $position = -1;
+        }
+        throw new NotFoundHttpException(
+            sprintf(
+                "Requested %s with id '%d' does not exist.",
+                substr($repository->getClassName(), $position + 1),
+                $id)
+        );
     }
 }
