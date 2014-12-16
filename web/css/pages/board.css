@@ -1,3 +1,9 @@
+.boards-section{
+    overflow:hidden;
+    clear:both;
+    padding-bottom:60px;
+}
+
 div.board.new{
 	position:relative;
 	cursor:pointer;

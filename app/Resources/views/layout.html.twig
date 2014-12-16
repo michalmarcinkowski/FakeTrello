@@ -18,6 +18,11 @@
                     <ul class="nav pull-right">
                         <li>
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                {% if 'ROLE_ADMIN' in app.user.getRoles() %}
+                                    <a href="{{ path('app_organization_index') }}">
+                                        Organizations
+                                    </a>
+                                {% endif %}
                                 <a href="{{ path('fos_user_profile_show') }}">
                                     {{ app.user.username }}
                                 </a>
