@@ -61,9 +61,3 @@ a.board:hover {
 .board h2 .icon-trash{
     top:42px;
 }
-.icon-star:hover{
-    background-position: -144px 0;
-}
-.icon-star-empty:hover{
-    background-position: -120px 0;
-}

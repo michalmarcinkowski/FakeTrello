@@ -19,8 +19,16 @@ $('.new-board-event').click(function(){
 });
 
 
-$('div.boards').on('click','span.star, span.icon-cog',function(){
+$('div.boards').on('click','span.icon-cog',function(){
 	window.location = $(this).attr('data-href');
+	return false;
+});
+
+$('div.boards').on('click','span.star, span.icon-cog',function(){
+	if($(this).hasClass('icon-star'))
+		unstarBoard($(this).closest('a.board').attr('id').substr(2));
+	else
+		starBoard($(this).closest('a.board').attr('id').substr(2));
 	return false;
 });
 
@@ -52,6 +60,28 @@ function addBoard($name,$organization_id){
 	$ajax['success'] = function(data){
 		$('#section'+$organization_id+'>.boards').append('<a class="board" id="id'+data.id+'" href="/app_dev.php/boards/'+data.id+'"><h2 style="float: left;">'+data.name+'<span class="icon-star-empty star" data-href="/app_dev.php/boards/'+data.id+'/star"></span></h2><div class="pull-right"><button type="submit" class="btn btn-danger btn-confirm board-delete-event"><i class="icon-trash"></i> <span>Delete</span></button></div></a>');
 		//$('#app_board_name').val('');
+	};
+
+	$.ajax($ajax);
+}
+
+function starBoard($id){
+	$ajax['dataType'] = 'html';
+	$ajax['type'] = 'GET';
+	$ajax['url'] = 'boards/'+$id+'/star';
+	$ajax['success'] = function(data){
+		$('a#id'+$id+' span.star').removeClass('icon-star-empty').addClass('icon-star');
+	};
+
+	$.ajax($ajax);
+}
+
+function unstarBoard($id){
+	$ajax['dataType'] = 'html';
+	$ajax['type'] = 'GET';
+	$ajax['url'] = 'boards/'+$id+'/unstar';
+	$ajax['success'] = function(data){
+			$('a#id'+$id+' span.star').removeClass('icon-star').addClass('icon-star-empty');
 	};
 
 	$.ajax($ajax);
