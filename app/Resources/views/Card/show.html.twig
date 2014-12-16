@@ -2,15 +2,43 @@
 
 {% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/pages/board-list.css') }}" media="screen"/>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('js/pages/board-list.js') }}"></script>
-{% endblock %}
-
 {% block body %}
+    <div class="page-header">
+        <h1><i class="glyphicon glyphicon-cog"></i> Comments for card {{ card.name }}</h1>
+    </div>
+
     {% include ':Card:_details.html.twig' %}
+
+    {% set comments = card.comments %}
+    {% if comments|length > 0 %}
+        <table class="table comments">
+            <thead>
+            <tr>
+                <th><h3 style="margin-bottom:0;">{{ sylius_resource_sort('name', 'Name') }}</h3></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for comment in comments %}
+                <tr id="{{ comment.id }}">
+                    <td>
+                        <strong>{{ comment.content }}</strong>
+                    </td>
+                    <td>
+                        <strong>{{ comment.user.username }}</strong>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">
+            <h4 class="alert-heading">{{ 'Info' }}</h4>
+            {{ 'There is no comments'|trans }}
+        </div>
+    {% endif %}
+
+    {% include ':Comment:_createForm.html.twig' %}
+
+
 {% endblock %}

@@ -29,3 +29,8 @@ sylius_resource:
             templates: :Admin\Label
             classes:
                 model: AppBundle\Entity\Label
+        app.comment:
+            driver: doctrine/orm
+            classes:
+                model: AppBundle\Entity\Comment
+                controller: AppBundle\Controller\CommentController
