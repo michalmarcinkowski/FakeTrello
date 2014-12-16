@@ -12,6 +12,9 @@ body.background-yellow {
 body.background-green {
     background: rgb(36, 208, 64);
 }
+.page-header{
+    border-bottom:none;
+}
 .form-signin, .fos_user_registration_register, div.container.confirmed, form.app_board_create,
  form.app_board_update, form.app_board_list_create, form.app_board_list_update,
  form.app_card_update, form.app_card_create, form.app_organization_update, form.app_organization_create{
