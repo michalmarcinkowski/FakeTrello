@@ -9,14 +9,18 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/pages/board-list.js') }}"></script>
+    <script>
+        $('body').addClass('background-{{board.color}}');
+    </script>
 {% endblock %}
-
-{% block containerClasses %}background-{{ board.color }}{% endblock %}
 
 {% block body %}
     <div class="page-header">
         <div class="actions-menu pull-right">
             {{ buttons.create(path('app_board_list_create', {'boardId': board.id}), 'Add list') }}
+        </div>
+        <div class="actions-menu pull-right" style="margin-right:10px;">
+            {{ buttons.create(path('app_board_update', {'id': board.id}), 'Edit board') }}
         </div>
         <h1><i class="glyphicon glyphicon-cog"></i> {{ board.name }}</h1>
     </div>
