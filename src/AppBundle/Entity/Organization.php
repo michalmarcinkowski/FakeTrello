@@ -32,7 +32,7 @@ class Organization
     private $members;
 
     /**
-     * @ORM\OneToMany(targetEntity="Board", mappedBy="organization")
+     * @ORM\OneToMany(targetEntity="Board", mappedBy="organization", cascade="remove")
      **/
     private $boards;
 

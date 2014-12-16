@@ -1,0 +1,18 @@
+{% extends "layout.html.twig" %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'SyliusResourceBundle:Macros:actions.html.twig' import update %}
+
+{% block body %}
+    <div class="page-header">
+        <h1><i class="glyphicon glyphicon-plus-sign"></i> {{ 'Edit Board' }}</h1>
+    </div>
+
+    {{ form_errors(form) }}
+
+    <form action="{{ path('app_board_update', {'id': board.id}) }}" method="post" class="form-horizontal" >
+        <input type="hidden" name="_method" value="PUT">
+        {% include ':Board:_form.html.twig' %}
+        {{ update() }}
+    </form>
+{% endblock %}
