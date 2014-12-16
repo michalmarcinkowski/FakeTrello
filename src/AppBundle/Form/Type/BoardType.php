@@ -16,6 +16,14 @@ class BoardType extends AbstractType
                 'class' => 'AppBundle\Entity\Organization',
                 'required' => false,
             ))
+            ->add('color', 'choice', array(
+                'choices' => array(
+                    'blue'    => 'Blue',
+                    'yellow'  => 'Yellow',
+                    'green'   => 'Green'
+                ),
+                'required' => false,
+            ))
         ;
     }
 

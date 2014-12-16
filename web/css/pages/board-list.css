@@ -1,7 +1,7 @@
 body>.container{
     margin-bottom:100px;
 }
-body>.container>.board-lists>a, div.board-list.new{
+body>.container .board-lists>a, div.board-list.new{
 	display:block;
 	background: none repeat scroll 0 0 #e3e3e3;
     border-radius: 3px;
@@ -17,7 +17,7 @@ body>.container>.board-lists>a, div.board-list.new{
     float:left;
     position:relative;
 }
-body>.container>.board-lists>a:hover{
+body>.container .board-lists>a:hover{
 	text-decoration:none;
 }
 body > .container > .board-lists > a:nth-child(4n+1){
@@ -26,7 +26,7 @@ body > .container > .board-lists > a:nth-child(4n+1){
 div.board-list.new:hover{
 	background:#d2d2d2;
 }
-body>.container>.board-lists>a h2{
+body>.container .board-lists>a h2{
 	display: inline;
     font-size: 15px;
     line-height: 18px;
@@ -53,12 +53,12 @@ div.board-list.new h2{
     font-size:14px;
     font-weight:normal;
 }
-body>.container>.board-lists>a h2>span{
+body>.container .board-lists>a h2>span{
 	position:absolute;
 	right:10px;
 }
 
-body>.container>.board-lists>a h2>span>span{
+body>.container .board-lists>a h2>span>span{
 	display:none;
 	position:absolute;
 	right:0;
@@ -74,15 +74,15 @@ body>.container>.board-lists>a h2>span>span{
     z-index: 20;
     padding:5px;
 }
-body>.container>.board-lists>a h2>span:hover>span{
+body>.container .board-lists>a h2>span:hover>span{
 	display:block;
 }
-body>.container>.board-lists>a h2>span>span>span{
+body>.container .board-lists>a h2>span>span>span{
 	display:block;
 	padding:3px 5px;
     cursor:pointer;
 }
-body>.container>.board-lists>a h2>span>span>span:hover{
+body>.container .board-lists>a h2>span>span>span:hover{
 	background-color: #318ec4;
     color: #fff;
 }
