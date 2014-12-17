@@ -29,6 +29,18 @@ app_card_delete:
                 route: app_board_show
                 parameters: { boardId: $boardId }
 
+app_card_archive:
+    pattern: /{id}/archive
+    methods: [GET, PUT]
+    defaults:
+        _controller: app.controller.archive:archiveCardAction
+
+app_card_unarchive:
+    pattern: /{id}/unarchive
+    methods: [GET, PUT]
+    defaults:
+        _controller: app.controller.archive:unarchiveCardAction
+
 app_card_comment_create:
     pattern: /{id}/comment/new
     methods: [POST]

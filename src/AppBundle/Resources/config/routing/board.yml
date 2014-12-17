@@ -24,19 +24,17 @@ app_board_unstar:
     defaults:
         _controller: app.controller.board:unstarAction
 
-app_board_star_json:
-    pattern: /{id}/star/json
-    methods: [DELETE]
+app_board_archive:
+    pattern: /{id}/archive
+    methods: [GET, PUT]
     defaults:
-        _controller: app.controller.board:starAction
-        _format: json
+        _controller: app.controller.archive:archiveBoardAction
 
-app_board_unstar_json:
-    pattern: /{id}/unstar/json
-    methods: [DELETE]
+app_board_unarchive:
+    pattern: /{id}/unarchive
+    methods: [GET, PUT]
     defaults:
-        _controller: app.controller.board:unstarAction
-        _format: json
+        _controller: app.controller.archive:unarchiveBoardAction
 
 app_board_delete:
     pattern: /{id}

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Traits\ArchivableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,8 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="card")
  */
-class Card
+class Card implements ArchivableInterface
 {
+    use ArchivableTrait;
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -49,7 +51,7 @@ class Card
     private $labels;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="card")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="card", cascade="remove")
      * @var Collection
      **/
     private $comments;

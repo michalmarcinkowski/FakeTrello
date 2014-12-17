@@ -9,6 +9,16 @@
     </script>
 {% endblock %}
 {% block body %}
+    <div class="page-header">
+        <div class="actions-menu pull-right">
+            {% if card.isArchived %}
+                <p style="color: red;">ARCHIVED</p>
+                {{ buttons.create(path('app_card_unarchive', {'boardId': card.boardList.board.id, 'boardListId': card.boardList.id, 'id': card.id}), 'Unarchive') }}
+            {% else %}
+                {{ buttons.create(path('app_card_archive', {'boardId': card.boardList.board.id, 'boardListId': card.boardList.id, 'id': card.id}), 'Archive') }}
+            {% endif %}
+        </div>
+    </div>
     <form action="{{ path('app_card_update', {'boardId': card.boardList.board.id, 'boardListId': card.boardList.id, 'id': card.id}) }}" method="post" class="form-horizontal app_card_update" novalidate>
         <h3>{{ 'Edit card' }}</h3>
         {{ form_errors(form) }}

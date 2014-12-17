@@ -23,3 +23,22 @@ services:
         class: AppBundle\Form\Type\CommentType
         tags:
             - { name: form.type, alias: app_comment }
+    #archiving services
+    app.archiver.card:
+        class: AppBundle\Archiver\CardArchiver
+    app.archiver.boardList:
+        class: AppBundle\Archiver\BoardListArchiver
+        arguments:
+            - @app.archiver.card
+    app.archiver.board:
+        class: AppBundle\Archiver\BoardArchiver
+        arguments:
+            - @app.archiver.boardList
+    app.controller.archive:
+        class: AppBundle\Controller\ArchiveController
+        arguments:
+            - @app.archiver.board
+            - @app.archiver.boardList
+            - @app.archiver.card
+        calls:
+            - [setContainer, ['@service_container']]

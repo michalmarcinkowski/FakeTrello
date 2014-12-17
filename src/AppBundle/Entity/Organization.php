@@ -122,6 +122,35 @@ class Organization
     }
 
     /**
+     * @return Collection/Board[]
+     */
+    public function getAvailableBoards()
+    {
+        $availableBoards = array();
+        foreach ($this->boards as $board) {
+            if ($board->isArchived()) {
+                continue;
+            }
+            $availableBoards[] = $board;
+        }
+        return $availableBoards;
+    }
+
+    /**
+     * @return Collection/Board[]
+     */
+    public function getArchivedBoards()
+    {
+        $archivedBoards = array();
+        foreach ($this->boards as $board) {
+            if ($board->isArchived()) {
+                $archivedBoards[] = $board;
+            }
+        }
+        return $archivedBoards;
+    }
+
+    /**
      * @param  Board $board
      * @return $this
      */

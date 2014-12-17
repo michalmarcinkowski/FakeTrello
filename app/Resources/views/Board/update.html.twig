@@ -10,6 +10,16 @@
 {% endblock %}
 
 {% block body %}
+    <div class="page-header">
+        <div class="actions-menu pull-right">
+            {% if board.isArchived %}
+                <p style="color: red;">ARCHIVED</p>
+                {{ buttons.create(path('app_board_unarchive', {'id': board.id}), 'Unarchive') }}
+            {% else %}
+                {{ buttons.create(path('app_board_archive', {'id': board.id}), 'Archive') }}
+            {% endif %}
+        </div>
+    </div>
     <form action="{{ path('app_board_update', {'id': board.id}) }}" method="post" class="form-horizontal app_board_update" >
         <h3>{{ 'Edit Board' }}</h3>
         {{ form_errors(form) }}
