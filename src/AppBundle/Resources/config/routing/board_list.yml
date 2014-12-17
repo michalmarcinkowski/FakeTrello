@@ -8,6 +8,18 @@ app_board_list_delete:
                 route: app_board_show
                 parameters: { boardId: $boardId }
 
+app_board_list_archive:
+    pattern: /{id}/archive
+    methods: [GET, PUT]
+    defaults:
+        _controller: app.controller.archive:archiveBoardListAction
+
+app_board_list_unarchive:
+    pattern: /{id}/unarchive
+    methods: [GET, PUT]
+    defaults:
+        _controller: app.controller.archive:unarchiveBoardListAction
+
 app_board_list_update:
     pattern: /{id}/edit
     methods: [GET, PUT, POST]

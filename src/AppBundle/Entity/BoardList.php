@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Traits\ArchivableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,8 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="list")
  */
-class BoardList
+class BoardList implements ArchivableInterface
 {
+    use ArchivableTrait;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
