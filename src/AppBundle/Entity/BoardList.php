@@ -133,4 +133,19 @@ class BoardList implements ArchivableInterface
     {
         return $this->cards;
     }
+
+    /**
+     * @return Collection/Card[]
+     */
+    public function getAvailableCards()
+    {
+        $availableCards = array();
+        foreach ($this->cards as $card) {
+            if ($card->isArchived()) {
+                continue;
+            }
+            $availableCards[] = $card;
+        }
+        return $availableCards;
+    }
 }

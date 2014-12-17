@@ -45,7 +45,7 @@
                     </span>
                 </h2>
               <span class="card-list">
-                  {% for card in list.cards %}
+                  {% for card in list.getAvailableCards %}
                       {% include ':Card:_shortDetails.html.twig' %}
                   {% endfor %}
               </span>
