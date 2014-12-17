@@ -1,8 +1,15 @@
 <div class="boards-section" id="section{{organization_id}}">
     <h3>{{ board_section_name }}</h3>
     <div class="boards">
-        {% for board in boards %}
-            {% include ':Board:_board.html.twig' %}
-        {% endfor %}
+        {% if boards|length > 0 %}
+            {% for board in boards %}
+                {% include ':Board:_boardArchive.html.twig' %}
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-info">
+                <h4 class="alert-heading">{{ 'Info' }}</h4>
+                {{ 'You have no boards archived'|trans }}
+            </div>
+        {% endif %}
     </div>
 </div>

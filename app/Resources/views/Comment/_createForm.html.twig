@@ -4,5 +4,8 @@
     <h3>{{ 'Add new comment' }}</h3>
     {{ form_errors(comment_form) }}
     {% include ':Comment:_form.html.twig' %}
-    {{ create() }}
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary btn-lg"><i class="icon-ok"></i> {{ 'sylius.create'|trans }}</button>
+        <a href="{{ path('app_board_show', {'boardId': card.boardList.board.id}) }}" class="btn btn-danger btn-lg"><i class="icon-remove"></i> {{ 'sylius.cancel'|trans }}</a>
+    </div>
 </form>

@@ -29,9 +29,9 @@ class BoardListArchiver implements ArchiverInterface
         /** @var BoardList $boardList */
         $boardList = $archivable;
         $boardList->setArchived(true);
-        foreach ($boardList->getCards() as $card) {
-            $this->cardArchiver->archive($card);
-        }
+//        foreach ($boardList->getCards() as $card) {
+//            $this->cardArchiver->archive($card);
+//        }
     }
 
     public function unarchive(ArchivableInterface $archivable)
@@ -42,8 +42,8 @@ class BoardListArchiver implements ArchiverInterface
         /** @var BoardList $boardList */
         $boardList = $archivable;
         $boardList->setArchived(false);
-        foreach ($boardList->getCards() as $card) {
-            $this->cardArchiver->unarchive($card);
-        }
+//        foreach ($boardList->getCards() as $card) {
+//            $this->cardArchiver->unarchive($card);
+//        }
     }
 } 

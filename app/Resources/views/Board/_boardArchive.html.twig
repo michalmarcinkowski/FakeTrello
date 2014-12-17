@@ -1,0 +1,5 @@
+  <a class="board" id="id{{board.id}}" href="{{ path('app_board_show', { 'boardId': board.id}) }}">
+      <h2 style="float: left;">{{ board.name }}
+          <span class="icon-cog icon" style="width: 20px; height: 20px;" data-href="{{ path('app_board_unarchive', {'id': board.id}) }}">Restore</span>
+      </h2>
+  </a>

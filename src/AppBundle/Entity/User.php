@@ -206,4 +206,32 @@ class User extends BaseUser
     {
         return $this->starredBoards->contains($board);
     }
+
+    public function getArchivedLists()
+    {
+        $archivedLists = array();
+        foreach($this->boards as $board) {
+            foreach ($board->getLists() as $list) {
+                if ($list->isArchived()) {
+                    $archivedLists[] = $list;
+                }
+            }
+        }
+        return $archivedLists;
+    }
+
+    public function getArchivedCards()
+    {
+        $archivedCards = array();
+        foreach($this->boards as $board) {
+            foreach ($board->getLists() as $list) {
+                foreach ($list->getCards() as $card) {
+                    if ($card->isArchived()) {
+                        $archivedCards[] = $card;
+                    }
+                }
+            }
+        }
+        return $archivedCards;
+    }
 }
