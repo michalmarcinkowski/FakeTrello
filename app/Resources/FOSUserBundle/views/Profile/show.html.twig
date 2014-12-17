@@ -3,8 +3,12 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block body %}
-    <div class="fos_user_user_show" style="margin: 50px;">
-        <p style="font-size: 22px;"><b style="margin-right: 15px;">{{ 'profile.show.username'|trans }}:</b> {{ user.username }}</p>
-        <p style="font-size: 22px;"><b style="margin-right: 65px;">{{ 'profile.show.email'|trans }}:</b> {{ user.email }}</p>
+    <div class="fos_user_user_show">
+        <h3>Your profile</h3>
+        <div class="left" style="height:100px"></div>
+        <div class="right">
+          <p style="font-size: 18px;"><b>{{ 'profile.show.username'|trans }}:</b> {{ user.username }}</p>
+          <p style="font-size: 18px;"><b>{{ 'profile.show.email'|trans }}:</b> {{ user.email }}</p>
+      </div>
     </div>
 {% endblock %}
