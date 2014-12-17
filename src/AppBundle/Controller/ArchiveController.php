@@ -63,7 +63,7 @@ class ArchiveController extends Controller
         $archiver->archive($entity);
         $entityManager->persist($entity);
         $entityManager->flush();
-        return (new RedirectResponse($request->get('referer')));
+        return (new RedirectResponse($request->headers->get('referer')));
     }
 
     private function unarchiveEntity(Request $request, RepositoryInterface $repository, EntityManagerInterface $entityManager, ArchiverInterface $archiver)
@@ -75,7 +75,7 @@ class ArchiveController extends Controller
         $archiver->unarchive($entity);
         $entityManager->persist($entity);
         $entityManager->flush();
-        return (new RedirectResponse($request->get('referer')));
+        return (new RedirectResponse($request->headers->get('referer')));
     }
 
     private function getOr404(RepositoryInterface $repository, $id)
