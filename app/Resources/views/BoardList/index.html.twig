@@ -29,7 +29,7 @@
         </div>
         <h1><i class="glyphicon glyphicon-cog"></i> {{ board.name }}</h1>
         {% if board.isArchived %}
-            <p style="color: red;">ARCHIVED</p>
+            <p class="alert alert-error">This board is currently archived.</p>
         {% endif %}
     </div>
     <div class="board-lists">

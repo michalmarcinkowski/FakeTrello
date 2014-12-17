@@ -65,7 +65,7 @@ a.board:hover {
     top:2px;
     transform:scale(1.2);
 }
-.board h2 .icon-cog{
+.board h2 .icon-cog, .board h2 .icon-share-alt{
     top:22px;
     transform:scale(1.2);
 }

@@ -4,7 +4,14 @@
     <span class="list-element-name">
     	{{ card.name }}
     	<span data-href="{{ path('app_card_update', { 'boardId': card.boardList.board.id, 'boardListId': card.boardList.id, 'id': card.id}) }}" class="icon-edit"></span>
-    	<span data-href="{{ path('app_card_show', { 'boardId': card.boardList.board.id, 'boardListId': card.boardList.id, 'id': card.id}) }}" class="icon-edit"></span>
+    	<span data-href="{{ path('app_card_show', { 'boardId': card.boardList.board.id, 'boardListId': card.boardList.id, 'id': card.id}) }}" class="icon-comment"></span>
+        {% if card.labels %}
+            <span class="labels">
+            {% for label in card.labels %}
+                <label id="label{{label.id}}" class="{{label.color}}" title="{{label.name}}"></label>
+            {% endfor %}
+            </span>
+        {% endif %}
     </span>
     {% if card.description %}
 	    <span class="list-element-desc">

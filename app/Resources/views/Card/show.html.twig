@@ -3,45 +3,31 @@
 {% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
 
 {% block body %}
-    <div class="page-header">
-        <h1><i class="glyphicon glyphicon-cog"></i> Comments for card '{{ card.name }}'</h1>
-        {% if card.isArchived %}
-            <p style="color: red;">ARCHIVED</p>
-        {% endif %}
-    </div>
-    Card details:
-    {% include ':Card:_details.html.twig' %}
-
-    {% set comments = card.comments %}
-    {% if comments|length > 0 %}
-        <table class="table comments">
-            <thead>
-            <tr>
-                <th><h3 style="margin-bottom:0;">{{ sylius_resource_sort('comment', 'Comment') }}</h3></th>
-                <th><h3 style="margin-bottom:0;">Username</h3></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for comment in comments %}
-                <tr id="{{ comment.id }}">
-                    <td>
-                        <strong>{{ comment.content }}</strong>
-                    </td>
-                    <td>
-                        <strong>{{ comment.user.username }}</strong>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <div class="alert alert-info">
-            <h4 class="alert-heading">{{ 'Info' }}</h4>
-            {{ 'There is no comments'|trans }}
-        </div>
+    {% if card.isArchived %}
+        <p class="alert alert-error">This card is currently archived.</p>
     {% endif %}
+    <div class="card-comments-section">
+        <h3>Comments for card "{{ card.name }}"</h3>
+        {% set comments = card.comments %}
+        {% if comments|length > 0 %}
+            {% for comment in comments %}
+                <div class="comment" id="comment{{ comment.id }}">
+                    <div class="left">
+                        <h4>{{ comment.user.username }}</h4>
+                    </div>
+                    <div class="right">
+                        <p>{{ comment.content }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-info">
+                <h4 class="alert-heading">{{ 'Info' }}</h4>
+                {{ 'There is no comments'|trans }}
+            </div>
+        {% endif %}
 
-    {% include ':Comment:_createForm.html.twig' %}
+        {% include ':Comment:_createForm.html.twig' %}
 
-
+    </div>
 {% endblock %}

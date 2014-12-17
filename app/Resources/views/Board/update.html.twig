@@ -6,14 +6,17 @@
   {{ parent() }}
     <script>
       $('.icon-save').addClass('icon-ok');
+      $('.page-header a.btn.btn-primary').prepend('<i class="icon-folder-open"></i>').appendTo('.form-actions');
     </script>
 {% endblock %}
 
 {% block body %}
     <div class="page-header">
+        {% if board.isArchived %}
+            <p class="alert alert-error">This board is currently archived.</p>
+        {% endif %}
         <div class="actions-menu pull-right">
             {% if board.isArchived %}
-                <p style="color: red;">ARCHIVED</p>
                 {{ buttons.create(path('app_board_unarchive', {'id': board.id}), 'Unarchive') }}
             {% else %}
                 {{ buttons.create(path('app_board_archive', {'id': board.id}), 'Archive') }}
