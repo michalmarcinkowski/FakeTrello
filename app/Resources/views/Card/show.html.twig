@@ -3,11 +3,11 @@
 {% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
 
 {% block body %}
+    {% if card.isArchived %}
+        <p class="alert alert-error">This card is currently archived.</p>
+    {% endif %}
     <div class="card-comments-section">
         <h3>Comments for card "{{ card.name }}"</h3>
-        {% if card.isArchived %}
-            <p style="color: red;">ARCHIVED</p>
-        {% endif %}
         {% set comments = card.comments %}
         {% if comments|length > 0 %}
             {% for comment in comments %}

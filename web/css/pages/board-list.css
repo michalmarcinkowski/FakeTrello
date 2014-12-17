@@ -184,3 +184,28 @@ a.list span.show-card-add-event.active input{
 input#new-board-list-name{
 	width:164px;
 }
+a.list span.list-element span.list-element-name .labels{
+    position:absolute;
+    z-index:0;
+    top:0px;
+    left:7px;
+    right:7px;
+    height:10px;
+}
+
+a.list span.list-element span.list-element-name label{
+    width:45px;
+    height:3px;
+    float:left;
+    margin:0 2px;
+    background:red;
+}
+a.list span.list-element span.list-element-name label.yellow{
+    background: rgb(234, 255, 49);
+}
+a.list span.list-element span.list-element-name label.green{
+    background: rgb(36, 208, 64);
+}
+a.list span.list-element span.list-element-name label.blue{
+    background: rgb(103, 103, 234);
+}

@@ -19,7 +19,7 @@ $('.new-board-event').click(function(){
 });
 
 
-$('div.boards').on('click','span.icon-cog',function(){
+$('div.boards').on('click','span.icon-cog,span.icon-share-alt',function(){
 	window.location = $(this).attr('data-href');
 	return false;
 });

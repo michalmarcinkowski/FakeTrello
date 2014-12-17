@@ -114,7 +114,7 @@ form.app_board_list_create .form-actions, form.app_board_list_update .form-actio
 form.app_card_update .form-actions, form.app_card_create .form-actions,
 form.app_organization_create .form-actions, form.app_organization_update .form-actions,
 .card-comments-section .form-actions, form.app_label_update .form-actions, form.app_label_create .form-actions{
-    padding-left:10px;
+    padding:20px 8px;
 }
 
 table.organizations td form{
