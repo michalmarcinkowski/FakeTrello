@@ -14,10 +14,7 @@
 
 {% block body %}
     <div class="page-header">
-        <div class="actions-menu pull-right">
-            {{ buttons.create(path('app_board_create'), 'Add Board') }}
-        </div>
-        <h1><i class="glyphicon glyphicon-cog"></i> {{ 'Boards' }}</h1>
+        <h1><i class="glyphicon glyphicon-cog"></i> {{ 'Archive' }}</h1>
     </div>
 
     {# display all user archived boards #}
@@ -28,10 +25,62 @@
 
     {# display all organization's archived boards #}
     {% for organization in user.organizations %}
-        {% set board_section_name = organization.name %}
+        {% set board_section_name = 'Archived "' ~ organization.name ~ '" boards'%}
         {% set organization_id = organization.id %}
         {% set boards = organization.getArchivedBoards %}
         {% include ':Board:_boardSectionArchive.html.twig' %}
     {% endfor %}
+
+    <h3>Archived lists</h3>
+    {% set lists = user.getArchivedLists %}
+    {% if lists|length > 0 %}
+        <table class="table lists">
+            <tbody>
+            {% for list in lists %}
+                <tr id="{{ list.id }}">
+                    <td>
+                        <strong>{{ list.name }}</strong>
+                    </td>
+                    <td>
+                        <div class="pull-right">
+                            {{ buttons.edit(path('app_board_list_unarchive', {'boardId': list.board.id,'id': list.id}), 'Restore') }}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">
+            <h4 class="alert-heading">{{ 'Info' }}</h4>
+            {{ 'You have no lists archived'|trans }}
+        </div>
+    {% endif %}
+
+    <h3>Archived cards</h3>
+    {% set cards = user.getArchivedCards %}
+    {% if cards|length > 0 %}
+        <table class="table cards">
+            <tbody>
+            {% for card in cards %}
+                <tr id="{{ card.id }}">
+                    <td>
+                        <strong>{{ card.name }}</strong>
+                    </td>
+                    <td>
+                        <div class="pull-right">
+                            {{ buttons.edit(path('app_card_unarchive', {'boardId': card.boardList.board.id,'boardListId': card.boardList.id, 'id': card.id}), 'Restore') }}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">
+            <h4 class="alert-heading">{{ 'Info' }}</h4>
+            {{ 'You have no cards archived'|trans }}
+        </div>
+    {% endif %}
 
 {% endblock %}

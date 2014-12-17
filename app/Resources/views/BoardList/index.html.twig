@@ -30,13 +30,10 @@
         <h1><i class="glyphicon glyphicon-cog"></i> {{ board.name }}</h1>
         {% if board.isArchived %}
             <p style="color: red;">ARCHIVED</p>
-            {% set board_lists = board.lists %}
-        {% else %}
-            {% set board_lists = board.getAvailableLists %}
         {% endif %}
     </div>
     <div class="board-lists">
-        {% for list in board_lists %}
+        {% for list in board.getAvailableLists %}
             <a class="list" id="id{{ list.id }}">
                 <h2 style="float: left;">
                     {{ list.name }}
