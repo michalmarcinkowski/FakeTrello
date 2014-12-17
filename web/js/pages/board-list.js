@@ -23,7 +23,7 @@ $('.board-lists').on('click','.delete-list-event',function(){
 });
 
 // BOARD-LIST UPDATE
-$('.board-lists').on('click','.edit-list-event,.list-element-name .icon-edit',function(){
+$('.board-lists').on('click','.edit-list-event,.list-element-name .icon-edit,.list-element-name .icon-comment',function(){
 	window.location = $(this).attr('data-href');
 	return false;
 });
@@ -91,7 +91,7 @@ function addCard($name,$list_id){
 	$ajax['type'] = 'POST';
 	$ajax['url'] = window.location.pathname+'/board-list/'+$list_id+'/card/new/json';
 	$ajax['success'] = function(data){
-		$('a#id'+$list_id).find('span.card-list').append('<span id="card'+data.id+'" class="list-element"><span class="list-element-name">'+data.name+'<span data-href="'+window.location.pathname+'/board-list/'+$list_id+'/card/'+data.id+'/edit'+'" class="icon-edit"></span></span></span>');
+		$('a#id'+$list_id).find('span.card-list').append('<span id="card'+data.id+'" class="list-element"><span class="list-element-name">'+data.name+'<span data-href="'+window.location.pathname+'/board-list/'+$list_id+'/card/'+data.id+'/edit'+'" class="icon-edit"></span><span data-href="'+window.location.pathname+'/board-list/'+$list_id+'/card/'+data.id+'" class="icon-comment"></span></span></span>');
 	};
 
 	$.ajax($ajax);
