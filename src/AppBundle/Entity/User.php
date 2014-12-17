@@ -99,6 +99,21 @@ class User extends BaseUser
     }
 
     /**
+     * @return Collection/Board[]
+     */
+    public function getAvailableBoards()
+    {
+        $availableBoards = array();
+        foreach ($this->boards as $board) {
+            if ($board->isArchived()) {
+                continue;
+            }
+            $availableBoards[] = $board;
+        }
+        return $availableBoards;
+    }
+
+    /**
      * @param  Board $board
      * @return $this
      */

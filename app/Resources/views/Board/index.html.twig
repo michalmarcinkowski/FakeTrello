@@ -23,14 +23,14 @@
     {# display all user boards #}
     {% set board_section_name = 'My boards' %}
     {% set organization_id = 0 %}
-    {% set boards = user.boards %}
+    {% set boards = user.getAvailableBoards %}
     {% include ':Board:_boardSection.html.twig' %}
 
     {# display all organization's boards #}
     {% for organization in user.organizations %}
         {% set board_section_name = organization.name %}
         {% set organization_id = organization.id %}
-        {% set boards = organization.boards %}
+        {% set boards = organization.getAvailableBoards %}
         {% include ':Board:_boardSection.html.twig' %}
     {% endfor %}
 

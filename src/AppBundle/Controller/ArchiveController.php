@@ -31,7 +31,7 @@ class ArchiveController extends Controller
 
     public function archiveBoardListAction(Request $request)
     {
-        return $this->archiveEntity($request, $this->get('app.repository.boardList'), $this->get('app.manager.boardList'), $this->boardListArchiver);
+        return $this->archiveEntity($request, $this->get('app.repository.boardList'), $this->get('app.manager.board_list'), $this->boardListArchiver);
     }
 
     public function archiveCardAction(Request $request)
@@ -46,7 +46,7 @@ class ArchiveController extends Controller
 
     public function unarchiveBoardListAction(Request $request)
     {
-        return $this->unarchiveEntity($request, $this->get('app.repository.boardList'), $this->get('app.manager.boardList'), $this->boardListArchiver);
+        return $this->unarchiveEntity($request, $this->get('app.repository.boardList'), $this->get('app.manager.board_list'), $this->boardListArchiver);
     }
 
     public function unarchiveCardAction(Request $request)

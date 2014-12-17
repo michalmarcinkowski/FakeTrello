@@ -164,6 +164,21 @@ class Board implements ArchivableInterface
     }
 
     /**
+     * @return Collection/BoardList[]
+     */
+    public function getAvailableLists()
+    {
+        $availableLists = array();
+        foreach ($this->lists as $list) {
+            if ($list->isArchived()) {
+                continue;
+            }
+            $availableLists[] = $list;
+        }
+        return $availableLists;
+    }
+
+    /**
      * @param string $color
      * @return $this
      */

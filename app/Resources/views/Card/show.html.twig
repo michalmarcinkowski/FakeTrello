@@ -5,6 +5,9 @@
 {% block body %}
     <div class="page-header">
         <h1><i class="glyphicon glyphicon-cog"></i> Comments for card '{{ card.name }}'</h1>
+        {% if card.isArchived %}
+            <p style="color: red;">ARCHIVED</p>
+        {% endif %}
     </div>
     Card details:
     {% include ':Card:_details.html.twig' %}
