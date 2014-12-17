@@ -27,7 +27,6 @@ class BoardListController extends ResourceController
             ->view()
             ->setTemplate($this->config->getTemplate('index.html'))
             ->setData(array(
-                $this->config->getPluralResourceName() => $board->getLists(),
                 'form'                                 => $form->createView(),
                 'board'                                => $board
             ))

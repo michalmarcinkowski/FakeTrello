@@ -1,0 +1,8 @@
+<div class="boards-section" id="section{{organization_id}}">
+    <h3>{{ board_section_name }}</h3>
+    <div class="boards">
+        {% for board in boards %}
+            {% include ':Board:_board.html.twig' %}
+        {% endfor %}
+    </div>
+</div>
