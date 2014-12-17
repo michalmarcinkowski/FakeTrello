@@ -46,13 +46,13 @@
         </div>
 
         <div class="container {% block containerClasses %}{% endblock %}">
-            {% for type, messages in app.session.flashbag.all() %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ type }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endfor %}
+            {#{% for type, messages in app.session.flashbag.all() %}#}
+                {#{% for message in messages %}#}
+                    {#<div class="alert alert-{{ type }}">#}
+                        {#{{ message }}#}
+                    {#</div>#}
+                {#{% endfor %}#}
+            {#{% endfor %}#}
 
             {% block body %}{% endblock %}
         </div>
