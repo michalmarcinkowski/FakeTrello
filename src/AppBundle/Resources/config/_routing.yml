@@ -4,6 +4,12 @@ homepage:
     defaults:
         _controller: app.controller.board:allForUserAction
 
+archive:
+    pattern: /archive
+    methods: [GET]
+    defaults:
+        _controller: app.controller.archive:displayArchiveAction
+
 app_admin:
     resource: @AppBundle/Resources/config/routing/admin/_admin.yml
     prefix: /admin/

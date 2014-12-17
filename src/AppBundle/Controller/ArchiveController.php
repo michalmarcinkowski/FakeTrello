@@ -24,6 +24,17 @@ class ArchiveController extends Controller
         $this->cardArchiver = $cardArchiver;
     }
 
+    public function displayArchiveAction(Request $request)
+    {
+        $currentUser = $this->getUser();
+        return $this->render(
+            'archive.html.twig',
+            array(
+                'user' => $currentUser,
+            )
+        );
+    }
+
     public function archiveBoardAction(Request $request)
     {
         return $this->archiveEntity($request, $this->get('app.repository.board'), $this->get('app.manager.board'), $this->boardArchiver);

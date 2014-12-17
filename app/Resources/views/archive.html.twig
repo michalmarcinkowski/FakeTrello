@@ -1,0 +1,37 @@
+{% extends "layout.html.twig" %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'SyliusResourceBundle:Macros:actions.html.twig' import create %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/pages/board.css') }}" media="screen"/>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('js/pages/board.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <div class="actions-menu pull-right">
+            {{ buttons.create(path('app_board_create'), 'Add Board') }}
+        </div>
+        <h1><i class="glyphicon glyphicon-cog"></i> {{ 'Boards' }}</h1>
+    </div>
+
+    {# display all user archived boards #}
+    {% set board_section_name = 'Archived boards' %}
+    {% set organization_id = 0 %}
+    {% set boards = user.getArchivedBoards %}
+    {% include ':Board:_boardSectionArchive.html.twig' %}
+
+    {# display all organization's archived boards #}
+    {% for organization in user.organizations %}
+        {% set board_section_name = organization.name %}
+        {% set organization_id = organization.id %}
+        {% set boards = organization.getArchivedBoards %}
+        {% include ':Board:_boardSectionArchive.html.twig' %}
+    {% endfor %}
+
+{% endblock %}
